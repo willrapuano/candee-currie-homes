@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #1a2744;
+    --color-gold: #c5a47e;
+    --color-cream: #f8f8f8;
+    --color-charcoal: #1a1a1a;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans text-charcoal antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 
+           bg-gold text-navy font-semibold px-8 py-3.5
+           rounded-none border-2 border-gold
+           transition-all duration-300 ease-out
+           hover:bg-transparent hover:text-gold hover:shadow-gold
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+  }
+
+  .btn-navy {
+    @apply inline-flex items-center justify-center gap-2
+           bg-navy text-white font-semibold px-8 py-3.5
+           rounded-none border-2 border-navy
+           transition-all duration-300 ease-out
+           hover:bg-transparent hover:text-navy
+           focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-white font-semibold px-8 py-3.5
+           rounded-none border-2 border-white
+           transition-all duration-300 ease-out
+           hover:bg-white hover:text-navy
+           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+  }
+
+  /* ── Section layouts ── */
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16;
+  }
+
+  .container-xl {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-lg {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Typography ── */
+  .section-label {
+    @apply text-gold font-sans font-semibold text-xs tracking-[0.2em] uppercase mb-4;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl text-navy leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-charcoal-muted text-lg leading-relaxed max-w-2xl;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300;
+  }
+
+  .listing-card {
+    @apply card overflow-hidden cursor-pointer;
+  }
+
+  .neighborhood-card {
+    @apply relative overflow-hidden cursor-pointer;
+  }
+
+  /* ── Dividers ── */
+  .gold-divider {
+    @apply w-16 h-0.5 bg-gold my-6;
+  }
+
+  .gold-divider-center {
+    @apply w-16 h-0.5 bg-gold my-6 mx-auto;
+  }
+
+  /* ── Nav ── */
+  .nav-link {
+    @apply font-sans text-xs font-semibold tracking-[0.15em] uppercase
+           text-navy hover:text-gold transition-colors duration-200;
+  }
+
+  /* ── Form inputs ── */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-200 
+           focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent
+           placeholder:text-gray-400 text-charcoal bg-white
+           transition-all duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-navy mb-1.5 tracking-wide;
+  }
+
+  /* ── Stat numbers ── */
+  .stat-number {
+    @apply font-serif text-4xl md:text-5xl text-navy font-bold;
+  }
+
+  .stat-label {
+    @apply font-sans text-sm text-charcoal-muted tracking-wide mt-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* Carousel dots */
+.carousel-dot {
+  @apply w-2 h-2 rounded-full bg-gray-300 transition-all duration-300;
+}
+.carousel-dot.active {
+  @apply w-6 bg-gold;
+}
+
+/* Search bar custom styles */
+.idx-search-bar {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.96);
+}
