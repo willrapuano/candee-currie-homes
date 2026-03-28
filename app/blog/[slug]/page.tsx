@@ -282,6 +282,16 @@ export default function BlogPostPage({ params }: Props) {
                     <Link href="/home-value" className="btn-outline-white">Free Home Value</Link>
                   </div>
                 </div>
+
+                {/* Equal Housing Opportunity — auto-rendered on every blog post */}
+                <div className="mt-8 pt-6 border-t border-gray-100 flex items-center gap-3">
+                  <span className="text-2xl" aria-hidden="true">🏠</span>
+                  <p className="text-xs text-charcoal-muted leading-relaxed">
+                    We are pledged to the letter and spirit of U.S. policy for the achievement of 
+                    equal housing opportunity throughout the nation.{' '}
+                    <span className="font-semibold">Equal Housing Opportunity.</span>
+                  </p>
+                </div>
               </article>
 
               {/* Sidebar */}
