@@ -240,11 +240,7 @@ export default function NeighborhoodPage({ params }: Props) {
             {neighborhood.zip ? (
               <MarketSnapshot zip={neighborhood.zip} neighborhood={neighborhood.name} />
             ) : null}
-            <div className="mt-8">
-              <Link href="/home-value" className="btn-gold text-center inline-block">
-                What&apos;s My Home Worth? →
-              </Link>
-            </div>
+
           </div>
         </section>
 
