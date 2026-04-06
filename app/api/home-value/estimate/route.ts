@@ -1,22 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { generateEstimate } from '@/lib/home-valuation'
 
+const DISCLAIMER =
+  'This is an automated estimate — not an appraisal. Values may vary significantly from actual market value.'
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { address, city } = body || {}
+    const { address, city, zip } = body || {}
 
-    if (!address || !city) {
-      return NextResponse.json({ error: 'Address and city are required' }, { status: 400 })
+    if (!address) {
+      return NextResponse.json({ error: 'Address is required' }, { status: 400 })
     }
 
-    const estimate = await generateEstimate(body)
+    const fullAddress = [address, city, zip ? `VA ${zip}` : 'VA'].filter(Boolean).join(', ')
+    const apiKey = process.env.RENTCAST_API_KEY
 
+    // Try Rentcast AVM first
+    if (apiKey) {
+      try {
+        const url = `https://api.rentcast.io/v1/avm/value?address=${encodeURIComponent(fullAddress)}&propertyType=Single+Family`
+        const res = await fetch(url, {
+          headers: { 'X-Api-Key': apiKey },
+          next: { revalidate: 0 },
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          if (data?.price && data.price > 0) {
+            return NextResponse.json({
+              price: data.price,
+              priceRangeLow: data.priceRangeLow ?? data.price * 0.9,
+              priceRangeHigh: data.priceRangeHigh ?? data.price * 1.1,
+              source: 'rentcast',
+              disclaimer: DISCLAIMER,
+            })
+          }
+        }
+      } catch (err) {
+        console.error('Rentcast error:', err)
+      }
+    }
+
+    // Fallback to local estimate
+    const estimate = await generateEstimate({ address, city: city || 'Arlington', zip })
     return NextResponse.json({
-      success: true,
-      estimate,
-      disclaimer:
-        'Automated preliminary estimate based on user input + public data. Not an appraisal or a substitute for an agent CMA.',
+      price: estimate.midpoint,
+      priceRangeLow: estimate.low,
+      priceRangeHigh: estimate.high,
+      source: 'estimate',
+      disclaimer: DISCLAIMER,
     })
   } catch (error) {
     console.error('Home value estimate error:', error)
