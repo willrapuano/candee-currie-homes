@@ -9,6 +9,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Address is required' }, { status: 400 })
     }
 
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email).trim())) {
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 })
+    }
+
     const ghlApiKey = process.env.GHL_API_KEY
     const locationId = process.env.GHL_LOCATION_ID || process.env.NEXT_PUBLIC_GHL_LOCATION_ID
 

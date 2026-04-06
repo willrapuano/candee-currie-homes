@@ -5,6 +5,10 @@ import { FaCheckCircle, FaHome, FaChartLine, FaClock, FaLock } from 'react-icons
 
 type Step = 'address' | 'estimating' | 'gate' | 'submitting' | 'done'
 
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())
+}
+
 interface Estimate {
   price: number
   priceRangeLow: number
@@ -25,6 +29,7 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
   const [leadName, setLeadName] = useState('')
   const [leadEmail, setLeadEmail] = useState('')
   const [leadPhone, setLeadPhone] = useState('')
+  const [emailError, setEmailError] = useState('')
   const [estimate, setEstimate] = useState<Estimate | null>(null)
   const [suggestions, setSuggestions] = useState<Array<{ label: string; street: string; city: string; zip: string }>>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
@@ -92,6 +97,11 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isValidEmail(leadEmail)) {
+      setEmailError('Please enter a valid email address.')
+      return
+    }
+    setEmailError('')
     setStep('submitting')
     try {
       await fetch('/api/home-value', {
@@ -220,8 +230,25 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
                     </div>
                     <div>
                       <label htmlFor="hv-email" className="form-label">Email *</label>
-                      <input id="hv-email" type="email" value={leadEmail} onChange={e => setLeadEmail(e.target.value)}
-                        className="form-input" placeholder="jane@example.com" required />
+                      <input
+                        id="hv-email"
+                        type="email"
+                        value={leadEmail}
+                        onChange={e => { setLeadEmail(e.target.value); if (emailError) setEmailError('') }}
+                        onBlur={() => {
+                          if (leadEmail && !isValidEmail(leadEmail)) {
+                            setEmailError('Please enter a valid email address.')
+                          } else {
+                            setEmailError('')
+                          }
+                        }}
+                        className={`form-input ${emailError ? 'border-red-400 focus:ring-red-300' : ''}`}
+                        placeholder="jane@example.com"
+                        required
+                      />
+                      {emailError && (
+                        <p className="text-red-500 text-xs mt-1">{emailError}</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="hv-phone" className="form-label">Phone *</label>
