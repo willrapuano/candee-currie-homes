@@ -4,9 +4,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { FaCheckCircle, FaHome, FaClock, FaChartLine } from 'react-icons/fa'
 import { NEIGHBORHOODS } from '@/data/neighborhoods'
-import { REAL_LISTINGS } from '@/data/real-listings'
-import { ListingCard } from '@/components/shared/ListingCard'
 import { HomeValueCTA } from '@/components/home/HomeValueCTA'
+import { MarketSnapshot } from '@/components/market/MarketSnapshot'
 import { getNeighborhoodSchema, getBreadcrumbSchema } from '@/lib/schema-org'
 
 interface Props {
@@ -40,12 +39,6 @@ function formatPrice(price: number) {
 export default function NeighborhoodPage({ params }: Props) {
   const neighborhood = NEIGHBORHOODS.find((n) => n.slug === params.slug)
   if (!neighborhood) notFound()
-
-  // Filter real listings to this neighborhood/city
-  const listings = REAL_LISTINGS.filter(
-    (l) => l.address.neighborhood?.toLowerCase() === neighborhood.name.toLowerCase() ||
-           l.address.city.toLowerCase() === neighborhood.city.toLowerCase()
-  ).slice(0, 4)
 
   const schemaOrg = getNeighborhoodSchema({
     name: neighborhood.name,
@@ -234,24 +227,34 @@ export default function NeighborhoodPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Listings */}
-        {listings.length > 0 && (
-          <section className="section-padding bg-cream">
-            <div className="container-xl">
-              <div className="flex items-center justify-between mb-10">
-                <h2 className="font-serif text-3xl text-navy font-bold">
-                  Homes for Sale in {neighborhood.name}
-                </h2>
-                <Link href={`/homes-for-sale?neighborhood=${neighborhood.slug}`} className="btn-navy text-sm">
-                  View All
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {listings.map((l) => <ListingCard key={l.id} listing={l} />)}
-              </div>
+        {/* Live Market Data */}
+        <section className="section-padding bg-cream">
+          <div className="container-xl">
+            <div className="mb-8">
+              <p className="section-label">Market Intelligence</p>
+              <h2 className="font-serif text-3xl text-navy font-bold">
+                What&apos;s Happening in {neighborhood.name} Right Now
+              </h2>
+              <div className="gold-divider mt-3" />
             </div>
-          </section>
-        )}
+            {neighborhood.zip ? (
+              <MarketSnapshot zip={neighborhood.zip} neighborhood={neighborhood.name} />
+            ) : null}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <a
+                href={`https://www.ttrsir.com/search#/?sort=newest&types[]=residential&zip=${neighborhood.zip || ''}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-navy text-center"
+              >
+                Search {neighborhood.name} Listings on TTR Sotheby&apos;s →
+              </a>
+              <Link href="/home-value" className="btn-outline-navy text-center">
+                What&apos;s My Home Worth?
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Nearby neighborhoods */}
         <section className="section-padding-sm bg-white">
