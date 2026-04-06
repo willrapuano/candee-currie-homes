@@ -88,7 +88,7 @@ export default function NeighborhoodPage({ params }: Props) {
               {neighborhood.name}
             </h1>
             <p className="text-gold text-sm font-semibold tracking-widest uppercase mb-4">
-              {neighborhood.city}, {neighborhood.county}, VA
+              {neighborhood.county}, VA
             </p>
             <p className="text-white/80 text-lg max-w-xl">{neighborhood.tagline}</p>
           </div>
