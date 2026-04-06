@@ -7,7 +7,7 @@ export const NEIGHBORHOODS = [
     zip: '22201',
     tagline: 'Urban sophistication meets suburban comfort',
     shortDescription: 'Arlington County blends walkable neighborhoods, world-class dining, and easy Metro access — just minutes from D.C.',
-    heroImage: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Rosslyn_skyline_April_2022.jpg',
     stats: { medianPrice: 850000, avgDom: 14, activeListings: 142 },
     highlights: ['Metro access', 'Top-rated schools', 'Vibrant dining scene', 'Easy D.C. commute'],
     order: 1,
