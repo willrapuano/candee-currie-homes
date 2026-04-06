@@ -13,7 +13,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Address is required' }, { status: 400 })
     }
 
-    const fullAddress = [address, city, zip ? `VA ${zip}` : 'VA'].filter(Boolean).join(', ')
+    // If address already looks like a full address (contains comma + state abbreviation or zip),
+    // use it as-is. Otherwise assemble from parts.
+    const addressHasState = /,\s*[A-Z]{2}\b/.test(address) || /\d{5}/.test(address)
+    const fullAddress = addressHasState
+      ? address.trim()
+      : [address, city, zip ? `VA ${zip}` : 'VA'].filter(Boolean).join(', ')
+
     const apiKey = process.env.RENTCAST_API_KEY
 
     // Try Rentcast AVM first
@@ -25,8 +31,10 @@ export async function POST(request: NextRequest) {
           next: { revalidate: 0 },
         })
 
+        console.log(`[home-value] Rentcast status=${res.status} address="${fullAddress}"`)
         if (res.ok) {
           const data = await res.json()
+          console.log(`[home-value] Rentcast price=${data?.price} source=rentcast`)
           if (data?.price && data.price > 0) {
             return NextResponse.json({
               price: data.price,
