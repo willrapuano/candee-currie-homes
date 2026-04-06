@@ -61,15 +61,15 @@ export default function HomesForSalePage() {
               {[
                 {
                   title: 'Off-Market Access',
-                  body: 'Candee's network surfaces listings before they hit Zillow. In competitive markets, that timing is everything.',
+                  body: "Candee's network surfaces listings before they hit Zillow. In competitive markets, that timing is everything.",
                 },
                 {
                   title: 'No Algorithm. Real Expertise.',
                   body: 'Automated search filters miss what matters — lot orientation, noise exposure, HOA politics. Candee knows.',
                 },
                 {
-                  title: 'Sotheby's Global Network',
-                  body: 'Preferred access to luxury inventory and relocation buyers, locally and internationally.',
+                  title: "Sotheby's Global Network",
+                  body: "Preferred access to luxury inventory and relocation buyers, locally and internationally.",
                 },
               ].map(({ title, body }) => (
                 <div key={title} className="bg-white p-8 shadow-card">
