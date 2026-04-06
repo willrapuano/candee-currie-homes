@@ -14,8 +14,8 @@ export function getRealEstateAgentSchema() {
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo.png`,
     image: `${SITE_URL}/images/candee-currie-headshot.png`,
-    telephone: '+17035550100',
-    email: 'candee@candeecurriehomes.com',
+    telephone: '+17032036005',
+    email: 'ccurrie@ttrsir.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '1206 N Washington St',

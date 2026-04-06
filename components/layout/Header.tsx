@@ -44,10 +44,10 @@ export function Header() {
         <div className="container-xl">
           <div className="flex items-center justify-end py-1.5 gap-6">
             <a
-              href="tel:+17035550100"
+              href="tel:+17032036005"
               className={`text-xs font-medium transition-colors hover:text-gold ${isHome && !scrolled ? 'text-white/80' : 'text-charcoal-muted'}`}
             >
-              (703) 555-0100
+              (703) 203-6005
             </a>
             <Link
               href="/home-value"

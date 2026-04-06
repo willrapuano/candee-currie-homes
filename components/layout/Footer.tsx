@@ -52,11 +52,11 @@ export function Footer() {
               and Alexandria VA real estate. 14+ years. 241 transactions. $105M+ volume.
             </p>
             <div className="flex flex-col gap-2 text-sm text-white/70">
-              <a href="tel:+17035550100" className="hover:text-gold transition-colors">
-                (703) 555-0100
+              <a href="tel:+17032036005" className="hover:text-gold transition-colors">
+                (703) 203-6005
               </a>
-              <a href="mailto:candee@candeecurriehomes.com" className="hover:text-gold transition-colors">
-                candee@candeecurriehomes.com
+              <a href="mailto:ccurrie@ttrsir.com" className="hover:text-gold transition-colors">
+                ccurrie@ttrsir.com
               </a>
               <span>Arlington, VA 22207</span>
             </div>

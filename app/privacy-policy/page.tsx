@@ -47,8 +47,8 @@ export default function PrivacyPolicyPage() {
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Contact</h2>
           <p className="text-charcoal-muted leading-relaxed">
             For privacy-related questions, contact Candee Currie at{' '}
-            <a href="mailto:candee@candeecurriehomes.com" className="text-gold hover:underline">
-              candee@candeecurriehomes.com
+            <a href="mailto:ccurrie@ttrsir.com" className="text-gold hover:underline">
+              ccurrie@ttrsir.com
             </a>.
           </p>
         </div>

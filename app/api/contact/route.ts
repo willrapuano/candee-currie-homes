@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     }
 
     // ─── Email notification (placeholder — wire up SMTP or Resend) ─────────
-    // TODO: Send email notification to candee@candeecurriehomes.com
+    // TODO: Send email notification to ccurrie@ttrsir.com
     // Using: nodemailer, Resend, or SendGrid
     console.log('Contact form submission:', { name, email, phone, message, source, interest })
 

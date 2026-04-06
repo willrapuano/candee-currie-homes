@@ -47,8 +47,8 @@ export default function TermsPage() {
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Contact</h2>
           <p className="text-charcoal-muted leading-relaxed">
             Questions? Contact{' '}
-            <a href="mailto:candee@candeecurriehomes.com" className="text-gold hover:underline">
-              candee@candeecurriehomes.com
+            <a href="mailto:ccurrie@ttrsir.com" className="text-gold hover:underline">
+              ccurrie@ttrsir.com
             </a>.
           </p>
         </div>

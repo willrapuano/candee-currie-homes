@@ -52,8 +52,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-navy font-semibold text-sm">Phone</p>
-                  <a href="tel:+17035550100" className="text-charcoal-muted hover:text-gold transition-colors">
-                    (703) 555-0100
+                  <a href="tel:+17032036005" className="text-charcoal-muted hover:text-gold transition-colors">
+                    (703) 203-6005
                   </a>
                 </div>
               </div>
@@ -64,8 +64,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-navy font-semibold text-sm">Email</p>
-                  <a href="mailto:candee@candeecurriehomes.com" className="text-charcoal-muted hover:text-gold transition-colors">
-                    candee@candeecurriehomes.com
+                  <a href="mailto:ccurrie@ttrsir.com" className="text-charcoal-muted hover:text-gold transition-colors">
+                    ccurrie@ttrsir.com
                   </a>
                 </div>
               </div>

@@ -129,7 +129,7 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
                       <div>
                         <label htmlFor="hv-phone" className="form-label">Phone *</label>
                         <input id="hv-phone" type="tel" value={leadPhone} onChange={e => setLeadPhone(e.target.value)}
-                          className="form-input" placeholder="(703) 555-0100" required />
+                          className="form-input" placeholder="(703) 203-6005" required />
                       </div>
                     </div>
                   </div>

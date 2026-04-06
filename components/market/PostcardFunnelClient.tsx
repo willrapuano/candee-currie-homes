@@ -247,7 +247,7 @@ export function PostcardFunnelClient() {
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
                     className="w-full bg-white/10 border border-white/20 text-white placeholder-white/30 px-4 py-3 text-sm focus:outline-none focus:border-gold"
-                    placeholder="(703) 555-0100"
+                    placeholder="(703) 203-6005"
                     required
                   />
                 </div>
