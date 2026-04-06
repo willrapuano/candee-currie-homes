@@ -12,7 +12,7 @@ const MARKET_DATA: Record<string, {
 }> = {
   // Arlington County
   '22201': { medianSalePrice: 799900,  medianDaysOnMarket: 29, activeListings: 104, percentAboveList: 0.02, updatedAt: '2026-04-01' },
-  '22202': { medianSalePrice: 620000,  medianDaysOnMarket: 22, activeListings: 68,  percentAboveList: 0.01, updatedAt: '2026-04-01' },
+  '22202': { medianSalePrice: 495000,  medianDaysOnMarket: 69, activeListings: 26,  percentAboveList: -0.02, updatedAt: '2026-04-06' },
   '22203': { medianSalePrice: 680000,  medianDaysOnMarket: 18, activeListings: 55,  percentAboveList: 0.02, updatedAt: '2026-04-01' },
   '22204': { medianSalePrice: 598000,  medianDaysOnMarket: 24, activeListings: 72,  percentAboveList: 0.01, updatedAt: '2026-04-01' },
   '22205': { medianSalePrice: 790000,  medianDaysOnMarket: 14, activeListings: 48,  percentAboveList: 0.03, updatedAt: '2026-04-01' },
