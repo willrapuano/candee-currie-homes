@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
           city: city || '',
           postalCode: zip || '',
           source: 'candeecurriehomes.com - Home Valuation Tool',
-          tags: ['home-valuation-tool'],
+          tags: ['home valuation report requested'],
         }
         if (locationId) contactPayload.locationId = locationId
 
