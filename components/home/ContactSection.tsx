@@ -88,14 +88,14 @@ export function ContactSection() {
             {/* Google Maps embed */}
             <div className="mt-10 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.739!2d-77.0910!3d38.8816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b0052d9e6e27%3A0x1234!2s1206+N+Washington+St%2C+Alexandria%2C+VA+22314!5e0!3m2!1sen!2sus!4v1700000000000"
+                src="https://maps.google.com/maps?q=1206+N+Washington+St%2C+Alexandria%2C+VA+22314&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="TTR Sotheby's International Realty — Alexandria VA"
+                title="TTR Sotheby's International Realty — 1206 N Washington St, Alexandria VA"
               />
             </div>
           </div>
