@@ -240,17 +240,9 @@ export default function NeighborhoodPage({ params }: Props) {
             {neighborhood.zip ? (
               <MarketSnapshot zip={neighborhood.zip} neighborhood={neighborhood.name} />
             ) : null}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a
-                href={`https://www.ttrsir.com/search#/?sort=newest&types[]=residential&zip=${neighborhood.zip || ''}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-navy text-center"
-              >
-                Search {neighborhood.name} Listings on TTR Sotheby&apos;s →
-              </a>
-              <Link href="/home-value" className="btn-outline-navy text-center">
-                What&apos;s My Home Worth?
+            <div className="mt-8">
+              <Link href="/home-value" className="btn-gold text-center inline-block">
+                What&apos;s My Home Worth? →
               </Link>
             </div>
           </div>
