@@ -68,7 +68,7 @@ export function Hero() {
           <span className="h-3 w-px bg-white/20 self-center" />
           <Link href="/market" className="hover:text-gold transition-colors">NoVA Market Report</Link>
           <span className="h-3 w-px bg-white/20 self-center" />
-          <Link href="/homes-for-sale" className="hover:text-gold transition-colors">Search Listings</Link>
+          <Link href="/contact" className="hover:text-gold transition-colors">Work With Candee</Link>
         </div>
       </div>
     </section>

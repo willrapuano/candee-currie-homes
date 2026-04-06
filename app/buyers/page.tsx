@@ -73,7 +73,7 @@ export default function BuyersPage() {
               different story. Candee helps you find the one that fits yours.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/homes-for-sale" className="btn-gold">Search Available Homes</Link>
+              <Link href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">Search Available Listings</Link>
               <Link href="/contact" className="btn-outline-white">Talk to Candee</Link>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function BuyersPage() {
             Browse active listings or connect with Candee for personalized guidance.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/homes-for-sale" className="btn-gold">Search All Listings</Link>
+            <Link href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">Search All Listings on TTR Sothebys</Link>
             <Link href="/contact" className="btn-outline-white">Talk to Candee</Link>
           </div>
         </div>

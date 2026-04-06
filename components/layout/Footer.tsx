@@ -3,7 +3,7 @@ import { NEIGHBORHOODS } from '@/data/neighborhoods'
 
 const FOOTER_NAV = {
   'Quick Links': [
-    { label: 'Search Homes', href: '/homes-for-sale' },
+
     { label: 'Featured Listings', href: '/#featured-listings' },
     { label: 'Sell Your Home', href: '/sellers' },
     { label: 'Buy a Home', href: '/buyers' },

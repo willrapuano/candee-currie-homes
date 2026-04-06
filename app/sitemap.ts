@@ -25,12 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${SITE_URL}/homes-for-sale`,
-      lastModified: now,
-      changeFrequency: 'hourly',
-      priority: 0.9,
-    },
-    {
       url: `${SITE_URL}/neighborhoods`,
       lastModified: now,
       changeFrequency: 'weekly',
