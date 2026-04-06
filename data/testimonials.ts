@@ -1,52 +1,29 @@
-export const TESTIMONIALS = [
-  {
-    id: '1',
-    name: 'Sarah M.',
-    text: 'Candee sold our Arlington home in 6 days — well above asking price. Her market knowledge is unmatched. She anticipated every obstacle before it became a problem. We couldn\'t have asked for a smoother process.',
-    rating: 5,
-    transaction: 'seller',
-    neighborhood: 'Lyon Village, Arlington',
-    source: 'google',
-    date: '2025-11',
-  },
-  {
-    id: '2',
-    name: 'James & Priya K.',
-    text: 'As first-time buyers in a competitive market, we needed someone who could move fast and negotiate hard. Candee delivered on both counts. We got our dream home in McLean in our second offer — she was absolutely instrumental.',
-    rating: 5,
-    transaction: 'buyer',
-    neighborhood: 'McLean',
-    source: 'google',
-    date: '2025-09',
-  },
-  {
-    id: '3',
-    name: 'David L.',
-    text: 'I\'ve worked with many agents over the years. Candee stands out for her executive-level communication — she keeps you informed, explains every step, and never leaves you guessing. Sold my Clarendon condo in 4 days.',
-    rating: 5,
-    transaction: 'seller',
-    neighborhood: 'Clarendon, Arlington',
-    source: 'google',
-    date: '2025-07',
-  },
-  {
-    id: '4',
-    name: 'Alexandra F.',
-    text: 'Candee\'s 30+ years in Arlington is not just a number — you feel it in every conversation. She knew comparable sales, buyer psychology, and exactly how to price and stage our home. Result: 15% over list price.',
-    rating: 5,
-    transaction: 'seller',
-    neighborhood: 'Ashton Heights, Arlington',
-    source: 'google',
-    date: '2025-05',
-  },
-  {
-    id: '5',
-    name: 'Michael & Dana R.',
-    text: 'We relocated from Chicago and needed a guide, not just an agent. Candee became our personal Northern Virginia ambassador — neighborhoods, schools, commutes. Six months in, we feel completely at home.',
-    rating: 5,
-    transaction: 'buyer',
-    neighborhood: 'Falls Church',
-    source: 'google',
-    date: '2025-03',
-  },
-]
+// ⚠️ REAL REVIEWS NEEDED BEFORE GO-LIVE
+// The placeholder reviews that were here have been removed — they were AI-generated fakes.
+// Replace with Candee's actual verified reviews from:
+//   - Realtor.com: https://www.realtor.com/realestateagents/5680414fbb954c010068ccc8
+//   - RateMyAgent: https://www.ratemyagent.com/real-estate-agent/candee-currie-b05kel/reviews
+//   - Homes.com: https://www.homes.com/real-estate-agents/candee-currie/7xvwedx/
+//
+// Format:
+// {
+//   id: '1',
+//   name: 'First Name L.',       // Use first name + last initial only
+//   text: 'Review text...',      // Exact quote from the review platform
+//   rating: 5,
+//   transaction: 'seller',       // 'buyer' | 'seller' | 'both'
+//   neighborhood: 'Arlington',
+//   source: 'google',            // 'google' | 'zillow' | 'realtor' | 'ratemyagent'
+//   date: '2025-11',             // YYYY-MM
+// }
+
+export const TESTIMONIALS: {
+  id: string;
+  name: string;
+  text: string;
+  rating: number;
+  transaction: string;
+  neighborhood: string;
+  source: string;
+  date: string;
+}[] = [];
