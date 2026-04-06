@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaBed, FaBath, FaRulerCombined, FaExternalLinkAlt, FaHome } from 'react-icons/fa'
+import { FaBed, FaBath, FaRulerCombined, FaHome } from 'react-icons/fa'
 import type { Listing } from '@/types'
 
 function formatPrice(price: number) {
@@ -26,16 +26,10 @@ export function ListingCard({ listing }: Props) {
     'Sold': 'bg-gray-500',
   }
 
-  const href = listing.sourceUrl || `/homes-for-sale/${listing.id}`
-  const isExternal = !!listing.sourceUrl
-
-  const CardWrapper = isExternal ? 'a' : Link
-  const linkProps = isExternal
-    ? { href, target: '_blank', rel: 'noopener noreferrer' }
-    : { href }
+  const href = `/homes-for-sale/${listing.id}`
 
   return (
-    <CardWrapper {...linkProps} className="listing-card block group">
+    <Link href={href} className="listing-card block group">
       {/* No-photo header */}
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-navy/5 via-cream to-white border-b border-gray-100 p-5 flex flex-col justify-between">
         <div className="flex items-start justify-between gap-3">
@@ -58,12 +52,6 @@ export function ListingCard({ listing }: Props) {
             <FaHome className="text-navy/60 text-base" />
           </div>
         </div>
-
-        {isExternal && (
-          <div className="absolute bottom-3 right-3">
-            <FaExternalLinkAlt className="text-navy/40 text-xs" />
-          </div>
-        )}
       </div>
 
       {/* Content */}
@@ -93,14 +81,7 @@ export function ListingCard({ listing }: Props) {
             <span>{formatSqft(listing.sqft)} sqft</span>
           </div>
         </div>
-
-        {/* Source attribution */}
-        {listing.source && (
-          <p className="text-gray-400 text-[10px] tracking-wide mt-3">
-            Source: {listing.source}
-          </p>
-        )}
       </div>
-    </CardWrapper>
+    </Link>
   )
 }

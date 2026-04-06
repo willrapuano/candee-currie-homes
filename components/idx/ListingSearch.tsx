@@ -309,12 +309,11 @@ export function ListingSearch({ initialQuery = '' }: { initialQuery?: string }) 
           </div>
         )}
 
-        {/* Source attribution */}
+        {/* Disclaimer */}
         <div className="border-t border-gray-100 pt-6">
           <p className="text-gray-400 text-xs leading-relaxed">
-            Listing data sourced from Zillow. Listings are updated periodically and may not reflect 
-            real-time availability. Click any listing to view full details on the source site.
-            Once BrightMLS IDX integration is active, listings will be served live with MLS-compliant data.
+            Listing information is sourced from public records and may not reflect current availability.
+            Contact Candee Currie to confirm status and schedule a private tour.
           </p>
         </div>
       </div>

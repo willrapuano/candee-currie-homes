@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { ListingSearch } from '@/components/idx/ListingSearch'
-import { SavedSearchCTA } from '@/components/idx/SavedSearchCTA'
 import { getBreadcrumbSchema } from '@/lib/schema-org'
 
 export const metadata: Metadata = {
   title: 'Homes for Sale in Northern Virginia | Arlington VA Real Estate | Candee Currie',
   description:
-    'Search active listings in Arlington, McLean, Falls Church, Alexandria and surrounding Northern Virginia communities. Filter by price, beds, baths, and more. Updated daily from BrightMLS.',
+    'Search homes for sale in Arlington, McLean, Falls Church, Alexandria and surrounding Northern Virginia communities. Filter by price, beds, baths, and more.',
   alternates: { canonical: '/homes-for-sale' },
   openGraph: {
     title: 'Northern Virginia Homes for Sale | Candee Currie',
@@ -33,7 +32,7 @@ export default function HomesForSalePage({ searchParams }: Props) {
         {/* Page header */}
         <section className="bg-navy py-12">
           <div className="container-xl">
-            <p className="section-label">BrightMLS · Updated Daily</p>
+            <p className="section-label">Northern Virginia Listings</p>
             <h1 className="font-serif text-4xl md:text-5xl text-white font-bold mb-3">
               Northern Virginia Homes for Sale
             </h1>
@@ -44,7 +43,7 @@ export default function HomesForSalePage({ searchParams }: Props) {
           </div>
         </section>
 
-        {/* Interactive IDX search */}
+        {/* Listing search */}
         <Suspense fallback={
           <div className="container-xl py-20 text-center text-charcoal-muted">
             Loading listings...
@@ -52,9 +51,6 @@ export default function HomesForSalePage({ searchParams }: Props) {
         }>
           <ListingSearch initialQuery={searchParams.q || ''} />
         </Suspense>
-
-        {/* Saved search CTA */}
-        <SavedSearchCTA />
       </div>
     </>
   )

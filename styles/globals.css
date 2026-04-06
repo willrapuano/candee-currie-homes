@@ -64,6 +64,18 @@
     font-size: 0.8125rem;
   }
 
+  .btn-navy-outline {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-white font-semibold px-8 py-3.5
+           rounded-none border-2 border-white
+           transition-all duration-300 ease-out
+           hover:bg-white hover:text-navy
+           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+  }
+
   /* ── Section layouts ── */
   .section-padding {
     @apply py-20 md:py-28 lg:py-32;

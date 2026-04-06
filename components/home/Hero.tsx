@@ -1,25 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-
-const HERO_TABS = ['Buy', 'Sell', 'Rent']
 
 export function Hero() {
-  const router = useRouter()
-  const [activeTab, setActiveTab] = useState('Buy')
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (searchQuery.trim()) {
-      router.push(`/homes-for-sale?q=${encodeURIComponent(searchQuery.trim())}`)
-    } else {
-      router.push('/homes-for-sale')
-    }
-  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -66,43 +50,10 @@ export function Hero() {
           Let&apos;s find your next home.
         </p>
 
-        {/* Search bar */}
-        <div className="w-full max-w-3xl animate-slide-up" style={{ animationDelay: '0.3s' }}>
-          {/* Tabs */}
-          <div className="flex mb-0">
-            {HERO_TABS.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase transition-all duration-200
-                  ${activeTab === tab
-                    ? 'bg-white text-navy'
-                    : 'bg-white/20 text-white hover:bg-white/30'
-                  }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          {/* Search input */}
-          <form onSubmit={handleSearch} className="idx-search-bar flex">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by address, neighborhood, city, or ZIP code"
-              className="flex-1 px-6 py-4 text-charcoal placeholder:text-gray-400 bg-transparent
-                         focus:outline-none text-base"
-            />
-            <button
-              type="submit"
-              className="bg-gold hover:bg-gold/90 text-navy font-semibold px-8 py-4 
-                         transition-colors duration-200 whitespace-nowrap text-sm tracking-wide uppercase"
-            >
-              Search
-            </button>
-          </form>
+        {/* CTAs */}
+        <div className="flex flex-wrap justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <Link href="/homes-for-sale" className="btn-gold">View Available Homes</Link>
+          <Link href="/home-value" className="btn-navy-outline">What&apos;s My Home Worth?</Link>
         </div>
 
         {/* Quick links */}
