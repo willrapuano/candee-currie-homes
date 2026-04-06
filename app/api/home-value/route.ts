@@ -14,7 +14,10 @@ export async function POST(request: NextRequest) {
     }
 
     const ghlApiKey = process.env.GHL_API_KEY
-    const locationId = process.env.GHL_LOCATION_ID || process.env.NEXT_PUBLIC_GHL_LOCATION_ID
+    const locationId =
+      process.env.GHL_LOCATION_ID ||
+      process.env.NEXT_PUBLIC_GHL_LOCATION_ID ||
+      'N2t4FzVeZVhK36srDMZC' // Candee Currie — TTR Sotheby's
 
     if (ghlApiKey && name && email) {
       try {
@@ -25,6 +28,7 @@ export async function POST(request: NextRequest) {
 
         // Create/upsert contact
         const contactPayload: Record<string, unknown> = {
+          locationId,
           firstName,
           lastName,
           email,
@@ -35,7 +39,6 @@ export async function POST(request: NextRequest) {
           source: 'candeecurriehomes.com - Home Valuation Tool',
           tags: ['home valuation report requested'],
         }
-        if (locationId) contactPayload.locationId = locationId
 
         const contactRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
           method: 'POST',
