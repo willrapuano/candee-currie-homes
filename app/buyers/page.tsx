@@ -73,8 +73,7 @@ export default function BuyersPage() {
               different story. Candee helps you find the one that fits yours.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">Search Available Listings</Link>
-              <Link href="/contact" className="btn-outline-white">Talk to Candee</Link>
+              <Link href="/contact" className="btn-gold">Talk to Candee</Link>
             </div>
           </div>
         </div>
@@ -174,11 +173,10 @@ export default function BuyersPage() {
             Start Your Northern Virginia Home Search
           </h2>
           <p className="text-white/70 mb-8">
-            Browse active listings or connect with Candee for personalized guidance.
+            Ready to start your search? Connect with Candee for personalized guidance.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">Search All Listings on TTR Sothebys</Link>
-            <Link href="/contact" className="btn-outline-white">Talk to Candee</Link>
+            <Link href="/contact" className="btn-gold">Talk to Candee</Link>
           </div>
         </div>
       </section>
