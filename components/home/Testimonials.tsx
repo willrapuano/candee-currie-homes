@@ -8,6 +8,20 @@ export function Testimonials() {
   const [active, setActive] = useState(0)
   const current = TESTIMONIALS[active]
 
+  
+  if (TESTIMONIALS.length === 0) {
+    return (
+      <section className="section-padding bg-white">
+        <div className="container-xl text-center">
+          <p className="section-label">What Clients Say</p>
+          <h2 className="section-title">5-Star Reviews</h2>
+          <div className="gold-divider-center" />
+          <p className="text-charcoal-muted mt-8">Client testimonials coming soon.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="section-padding bg-white">
       <div className="container-xl">
