@@ -240,6 +240,18 @@ export default function NeighborhoodPage({ params }: Props) {
             {neighborhood.zip ? (
               <MarketSnapshot zip={neighborhood.zip} neighborhood={neighborhood.name} />
             ) : null}
+            <div className="mt-8 bg-navy p-6 md:p-8">
+              <h3 className="font-serif text-2xl text-white mb-2">Own in {neighborhood.name}?</h3>
+              <p className="text-white/70 text-sm leading-relaxed mb-6">
+                The market is moving fast. Find out exactly what your home is worth today with our instant, data-backed valuation tool.
+              </p>
+              <a 
+                href="/home-value" 
+                className="block text-center bg-gold text-navy font-bold px-4 py-3 text-sm uppercase tracking-wider hover:bg-white transition-colors"
+              >
+                Get Free Valuation
+              </a>
+            </div>
 
           </div>
         </section>
