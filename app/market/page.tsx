@@ -17,10 +17,10 @@ export const metadata: Metadata = {
 const MARKET_AREAS = [
   { name: 'Arlington', slug: 'arlington', zip: '22201', description: 'Arlington County — inside the Beltway, Metro access, competitive market' },
   { name: 'McLean', slug: 'mclean', zip: '22101', description: 'Fairfax County luxury — Langley HS, great estates, high price points' },
-  { name: 'Falls Church', slug: 'falls-church', zip: '22046', description: 'Falls Church City — top-rated schools, walkable downtown, family market' },
+  { name: 'Falls Church', slug: 'falls-church', zip: '22042', description: 'Falls Church City — top-rated schools, walkable downtown, family market' },
   { name: 'Alexandria', slug: 'alexandria', zip: '22314', description: 'Old Town and Del Ray — historic charm, walkable, Metro Yellow/Blue' },
   { name: 'North Arlington', slug: 'arlington', zip: '22207', description: 'North Arlington — quiet streets, top schools, larger lots' },
-  { name: 'Ballston / Clarendon', slug: 'clarendon', zip: '22203', description: 'Urban Arlington core — condos, walkability, Orange/Silver Line' },
+  { name: 'Ballston / Clarendon', slug: 'clarendon', zip: '22201', description: 'Urban Arlington core — condos, walkability, Orange/Silver Line' },
 ]
 
 export default function MarketPage() {
