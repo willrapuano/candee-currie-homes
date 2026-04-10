@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { FaCheckCircle, FaHome, FaClock, FaChartLine } from 'react-icons/fa'
+import { FaCheckCircle } from 'react-icons/fa'
 import { NEIGHBORHOODS } from '@/data/neighborhoods'
 import { HomeValueCTA } from '@/components/home/HomeValueCTA'
 import { MarketSnapshot } from '@/components/market/MarketSnapshot'
@@ -30,10 +30,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: n.heroImage, alt: `${n.name} homes` }],
     },
   }
-}
-
-function formatPrice(price: number) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(price)
 }
 
 export default function NeighborhoodPage({ params }: Props) {
@@ -93,48 +89,6 @@ export default function NeighborhoodPage({ params }: Props) {
             <p className="text-white/80 text-lg max-w-xl">{neighborhood.tagline}</p>
           </div>
         </section>
-
-        {/* Stats bar */}
-        {neighborhood.stats && (
-          <section className="bg-navy py-8">
-            <div className="container-xl">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {neighborhood.stats.medianPrice && (
-                  <div className="text-center">
-                    <FaHome className="text-gold mx-auto mb-1" />
-                    <p className="font-serif text-2xl text-white font-bold">
-                      {formatPrice(neighborhood.stats.medianPrice)}
-                    </p>
-                    <p className="text-white/50 text-xs uppercase tracking-wider mt-0.5">Median Price</p>
-                  </div>
-                )}
-                {neighborhood.stats.avgDom && (
-                  <div className="text-center">
-                    <FaClock className="text-gold mx-auto mb-1" />
-                    <p className="font-serif text-2xl text-white font-bold">
-                      {neighborhood.stats.avgDom} days
-                    </p>
-                    <p className="text-white/50 text-xs uppercase tracking-wider mt-0.5">Avg. Days on Market</p>
-                  </div>
-                )}
-                {neighborhood.stats.activeListings && (
-                  <div className="text-center">
-                    <FaChartLine className="text-gold mx-auto mb-1" />
-                    <p className="font-serif text-2xl text-white font-bold">
-                      {neighborhood.stats.activeListings}
-                    </p>
-                    <p className="text-white/50 text-xs uppercase tracking-wider mt-0.5">Active Listings</p>
-                  </div>
-                )}
-                <div className="text-center">
-                  <FaChartLine className="text-gold mx-auto mb-1" />
-                  <p className="font-serif text-2xl text-white font-bold">NoVA</p>
-                  <p className="text-white/50 text-xs uppercase tracking-wider mt-0.5">Market Area</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* Content */}
         <section className="section-padding bg-white">
@@ -196,32 +150,6 @@ export default function NeighborhoodPage({ params }: Props) {
                   </Link>
                 </div>
 
-                {/* Quick stats */}
-                {neighborhood.stats && (
-                  <div className="bg-cream p-6 border border-gray-100">
-                    <h4 className="font-serif text-navy text-lg font-semibold mb-4">Market Snapshot</h4>
-                    <div className="space-y-3">
-                      {neighborhood.stats.medianPrice && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-charcoal-muted">Median Price</span>
-                          <span className="font-semibold text-navy">{formatPrice(neighborhood.stats.medianPrice)}</span>
-                        </div>
-                      )}
-                      {neighborhood.stats.avgDom && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-charcoal-muted">Avg. Days on Market</span>
-                          <span className="font-semibold text-navy">{neighborhood.stats.avgDom}</span>
-                        </div>
-                      )}
-                      {neighborhood.stats.activeListings && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-charcoal-muted">Active Listings</span>
-                          <span className="font-semibold text-navy">{neighborhood.stats.activeListings}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
