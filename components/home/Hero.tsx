@@ -24,7 +24,7 @@ export function Hero() {
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="hidden md:block h-px w-10 bg-gold" />
           <span className="text-gold text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-center">
-            TTR Sotheby's International Realty
+            TTR Sotheby&apos;s International Realty
           </span>
           <div className="hidden md:block h-px w-10 bg-gold" />
         </div>
@@ -38,7 +38,7 @@ export function Hero() {
 
         {/* Subheadline */}
         <p className="text-white/80 text-sm sm:text-base md:text-xl max-w-2xl leading-relaxed mb-6 md:mb-8 px-2">
-          Candee Currie — Associate Broker at TTR Sotheby's. 14 years. 241 transactions. $105M+ volume.
+          Candee Currie — Associate Broker at TTR Sotheby&apos;s. 14 years. 241 transactions. $105M+ volume.
           <span className="hidden md:inline"> </span>
           <br className="md:hidden" />
           Arlington, McLean, Falls Church, Alexandria.
@@ -56,7 +56,7 @@ export function Hero() {
         {/* Primary CTAs */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
           <Link href="/home-value" className="btn-gold text-sm sm:text-base px-8 py-4 w-full sm:w-auto text-center">
-            What's My Home Worth? →
+            What&apos;s My Home Worth? →
           </Link>
           <Link href="/contact" className="btn-outline-white text-sm sm:text-base px-8 py-4 w-full sm:w-auto text-center">
             Talk to Candee
