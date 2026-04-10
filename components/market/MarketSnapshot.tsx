@@ -44,7 +44,10 @@ export function MarketSnapshot({ zip, neighborhood }: { zip: string; neighborhoo
     return null // don't show if no data — avoids empty widgets
   }
 
-  const above = data.percentAboveList != null ? Math.round(data.percentAboveList * 100) : null
+  // Only show if non-zero and plausible (Redfin returns 0 for low-volume ZIPs)
+  const above = (data.percentAboveList != null && data.percentAboveList !== 0)
+    ? Math.round(data.percentAboveList * 100)
+    : null
 
   return (
     <div className="bg-cream border-l-4 border-gold p-6">

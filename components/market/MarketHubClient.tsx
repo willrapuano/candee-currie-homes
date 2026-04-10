@@ -46,7 +46,9 @@ function AreaCard({ area }: { area: AreaConfig }) {
       .catch(() => setLoading(false))
   }, [area.zip])
 
-  const above = data?.percentAboveList != null ? Math.round(data.percentAboveList * 100) : null
+  const above = (data?.percentAboveList != null && data.percentAboveList !== 0)
+    ? Math.round(data.percentAboveList * 100)
+    : null
 
   return (
     <div className="bg-white shadow-card p-6 flex flex-col gap-5">
