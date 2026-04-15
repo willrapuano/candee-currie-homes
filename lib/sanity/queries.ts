@@ -121,3 +121,58 @@ export const TESTIMONIALS_QUERY = groq`
     neighborhood
   }
 `
+
+// ─── Seller Guides ─────────────────────────────────────────────────────────
+export const ALL_SELLER_GUIDES_QUERY = groq`
+  *[_type == "sellerGuide"] | order(order asc, _createdAt desc) {
+    _id,
+    title,
+    slug,
+    shortDescription,
+    icon,
+    priority,
+    category,
+    cta,
+    targetKeyword,
+    metaTitle,
+    metaDescription
+  }
+`
+
+export const SELLER_GUIDE_QUERY = groq`
+  *[_type == "sellerGuide" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    shortDescription,
+    content,
+    faqSection,
+    cta,
+    icon,
+    priority,
+    category,
+    targetKeyword,
+    metaTitle,
+    metaDescription,
+    schemaType,
+    internalLinks[]-> {
+      _id,
+      title,
+      slug
+    }
+  }
+`
+
+export const SELLER_GUIDE_SLUGS_QUERY = groq`
+  *[_type == "sellerGuide" && defined(slug.current)] { "slug": slug.current }
+`
+
+export const RELATED_SELLER_GUIDES_QUERY = groq`
+  *[_type == "sellerGuide" && slug.current != $currentSlug && category == $category] | order(order asc) [0...3] {
+    _id,
+    title,
+    slug,
+    shortDescription,
+    icon
+  }
+`
