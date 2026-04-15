@@ -93,8 +93,70 @@ export const postSchema = defineType({
       rows: 2,
       validation: (Rule) => Rule.max(160),
     }),
+    // Seller-focused content tracking fields
+    defineField({
+      name: 'targetKeyword',
+      title: 'Target Keyword',
+      type: 'string',
+      description: 'Primary keyword for SEO tracking',
+    }),
+    defineField({
+      name: 'contentPillar',
+      title: 'Content Pillar',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Seller Authority', value: 'seller-authority' },
+          { title: 'Market Intel', value: 'market-intel' },
+          { title: 'Neighborhood', value: 'neighborhood' },
+          { title: 'Proof/Credibility', value: 'proof' },
+          { title: 'Lifestyle', value: 'lifestyle' },
+        ],
+      },
+      description: 'Which pillar this post supports',
+    }),
+    defineField({
+      name: 'isCornerstone',
+      title: 'Cornerstone Content',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Flag for pillar content that drives internal linking',
+    }),
+    defineField({
+      name: 'relatedSellerGuides',
+      title: 'Related Seller Guides',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'sellerGuide' }] }],
+      description: 'Link to relevant seller guides from this post',
+    }),
+    defineField({
+      name: 'relatedNeighborhoods',
+      title: 'Related Neighborhoods',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'neighborhood' }] }],
+    }),
   ],
   preview: {
-    select: { title: 'title', media: 'mainImage', subtitle: 'publishedAt' },
+    select: { 
+      title: 'title', 
+      media: 'mainImage', 
+      subtitle: 'publishedAt',
+      pillar: 'contentPillar',
+      cornerstone: 'isCornerstone',
+    },
+    prepare({ title, media, subtitle, pillar, cornerstone }) {
+      const pillarLabels: Record<string, string> = {
+        'seller-authority': '🏠 Seller',
+        'market-intel': '📊 Market',
+        'neighborhood': '📍 Neighborhood',
+        'proof': '⭐ Proof',
+        'lifestyle': '✨ Lifestyle',
+      }
+      return {
+        title: title,
+        subtitle: `${pillarLabels[pillar || ''] || pillar}${cornerstone ? ' • CORNERSTONE' : ''}`,
+        media: media,
+      }
+    },
   },
 })

@@ -126,11 +126,46 @@ export const neighborhoodSchema = defineType({
       rows: 2,
       validation: (Rule) => Rule.max(160),
     }),
+    // Seller-focused cross-linking fields
+    defineField({
+      name: 'sellerPage',
+      title: 'Seller Page',
+      type: 'reference',
+      to: [{ type: 'neighborhoodSellerPage' }],
+      description: 'Link to the seller-focused page for this neighborhood',
+    }),
+    defineField({
+      name: 'hasSellerContent',
+      title: 'Has Seller Content',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Flag if seller page has been created',
+    }),
+    defineField({
+      name: 'sellerGuideExcerpt',
+      title: 'Seller Guide Excerpt',
+      type: 'text',
+      rows: 2,
+      description: 'Brief text for cross-linking from seller guides',
+    }),
   ],
   preview: {
-    select: { title: 'name', subtitle: 'city', media: 'heroImage' },
+    select: { 
+      title: 'name', 
+      subtitle: 'city', 
+      media: 'heroImage',
+      hasSeller: 'hasSellerContent',
+    },
+    prepare({ title, subtitle, media, hasSeller }) {
+      return {
+        title: title,
+        subtitle: `${subtitle || 'No city'}${hasSeller ? ' • Seller Page ✓' : ''}`,
+        media: media,
+      }
+    },
   },
   orderings: [
     { title: 'Display Order', name: 'order', by: [{ field: 'order', direction: 'asc' }] },
+    { title: 'Has Seller Content', name: 'sellerContent', by: [{ field: 'hasSellerContent', direction: 'desc' }] },
   ],
 })
