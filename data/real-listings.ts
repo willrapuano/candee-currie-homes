@@ -3,8 +3,6 @@
 // Refresh periodically to keep current.
 //
 // NOTE: No listing photos — we link out to Zillow for full details.
-// Once Repliers IDX API key is active, this file will be replaced
-// with live MLS data including BrightMLS-compliant photos.
 
 import type { Listing } from '@/types'
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FaCheckCircle } from 'react-icons/fa'
+import { AddressAutocompleteInput } from '@/components/shared/AddressAutocompleteInput'
 
 type Step = 'form' | 'submitting' | 'done'
 
@@ -18,6 +19,7 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
   const [leadEmail, setLeadEmail] = useState('')
   const [leadPhone, setLeadPhone] = useState('')
   const [emailError, setEmailError] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,10 +28,11 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
       return
     }
     setEmailError('')
+    setSubmitError('')
     setStep('submitting')
 
     try {
-      await fetch('/api/home-value', {
+      const res = await fetch('/api/home-value', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -41,8 +44,17 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
           zip,
         }),
       })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        setSubmitError(data?.error || 'We could not deliver your request right now. Please call Candee directly.')
+        setStep('form')
+        return
+      }
     } catch {
-      // best-effort — still show success
+      setSubmitError('We could not deliver your request right now. Please call Candee directly.')
+      setStep('form')
+      return
     }
 
     setStep('done')
@@ -68,13 +80,16 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
                   {/* Address */}
                   <div>
                     <label htmlFor="hv-address" className="form-label">Street Address *</label>
-                    <input
+                    <AddressAutocompleteInput
                       id="hv-address"
                       value={address}
-                      onChange={e => setAddress(e.target.value)}
+                      onChange={setAddress}
+                      onSelect={(suggestion) => {
+                        if (suggestion.city) setCity(suggestion.city)
+                        if (suggestion.zip) setZip(suggestion.zip)
+                      }}
                       className="form-input"
                       placeholder="123 Main St"
-                      autoComplete="street-address"
                       required
                     />
                   </div>
@@ -141,6 +156,9 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
                   >
                     {step === 'submitting' ? 'Sending…' : 'Request My Free CMA →'}
                   </button>
+                  {submitError && (
+                    <p className="text-red-500 text-xs text-center">{submitError}</p>
+                  )}
                   <p className="text-gray-400 text-xs text-center">No spam. No obligation. Candee will follow up within 24 hours.</p>
                 </form>
               )}
@@ -215,7 +233,7 @@ export function HomeValueForm({ initialAddress = '' }: { initialAddress?: string
             <div className="bg-cream p-5 border-l-4 border-gold">
               <p className="text-navy text-sm font-semibold mb-1">Why not Zillow?</p>
               <p className="text-charcoal-muted text-sm leading-relaxed">
-                Automated estimates can be off by 10–20% or more. Candee&apos;s CMA is based on actual sold data from BrightMLS and her direct knowledge of your neighborhood.
+                Automated estimates can be off by 10–20% or more. Candee&apos;s CMA is based on actual recent sales data and her direct knowledge of your neighborhood.
               </p>
             </div>
           </div>

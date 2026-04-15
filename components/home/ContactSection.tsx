@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa'
+import { AddressAutocompleteInput } from '@/components/shared/AddressAutocompleteInput'
 
 export function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', address: '', city: '', zip: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -22,7 +23,7 @@ export function ContactSection() {
       })
       if (res.ok) {
         setStatus('sent')
-        setForm({ name: '', email: '', phone: '', message: '' })
+        setForm({ name: '', email: '', phone: '', address: '', city: '', zip: '', message: '' })
       } else {
         setStatus('error')
       }
@@ -168,6 +169,52 @@ export function ContactSection() {
                     <option value="invest">Investment property</option>
                     <option value="other">Other</option>
                   </select>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-address" className="form-label">Property Address</label>
+                  <AddressAutocompleteInput
+                    id="contact-address"
+                    name="address"
+                    value={form.address}
+                    onChange={(value) => setForm({ ...form, address: value })}
+                    onSelect={(suggestion) => setForm({
+                      ...form,
+                      address: suggestion.street || suggestion.label,
+                      city: suggestion.city || form.city,
+                      zip: suggestion.zip || form.zip,
+                    })}
+                    className="form-input"
+                    placeholder="123 Main St"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact-city" className="form-label">City</label>
+                    <input
+                      id="contact-city"
+                      type="text"
+                      name="city"
+                      value={form.city}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="Alexandria"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-zip" className="form-label">ZIP Code</label>
+                    <input
+                      id="contact-zip"
+                      type="text"
+                      name="zip"
+                      value={form.zip}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="22314"
+                      maxLength={5}
+                    />
+                  </div>
                 </div>
 
                 <div>

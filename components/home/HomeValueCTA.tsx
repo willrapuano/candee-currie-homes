@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { AddressAutocompleteInput } from '@/components/shared/AddressAutocompleteInput'
 
 export function HomeValueCTA() {
   const router = useRouter()
@@ -49,15 +50,15 @@ export function HomeValueCTA() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-0 shadow-gold">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Enter your property address"
-              className="flex-1 px-6 py-4 text-charcoal placeholder:text-gray-400 
-                         focus:outline-none focus:ring-2 focus:ring-gold text-base bg-white"
-              required
-            />
+            <div className="flex-1">
+              <AddressAutocompleteInput
+                value={address}
+                onChange={setAddress}
+                placeholder="Enter your property address"
+                className="w-full px-6 py-4 text-charcoal placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gold text-base bg-white"
+                required
+              />
+            </div>
             <button
               type="submit"
               className="bg-gold hover:bg-gold/90 text-navy font-bold px-8 py-4

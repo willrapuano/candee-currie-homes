@@ -28,7 +28,7 @@ export function SavedSearchCTA({ city, minPrice, maxPrice }: Props) {
     e.preventDefault()
     if (!email.trim()) return
     setLoading(true)
-    // Simulate API call — in production this goes to GHL/Repliers saved search
+    // Simulate API call — in production this goes to the live saved-search workflow
     await new Promise((r) => setTimeout(r, 900))
     setSubmitted(true)
     setLoading(false)

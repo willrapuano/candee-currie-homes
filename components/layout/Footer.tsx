@@ -60,12 +60,11 @@ export function Footer() {
               </a>
               <span>Arlington, VA 22207</span>
             </div>
-            {/* Social links — update hrefs with real profile URLs before launch */}
             <div className="flex items-center gap-4 mt-6">
               {[
-                { id: 'instagram', href: 'https://www.instagram.com/candeecurriehomes' },
-                { id: 'facebook', href: 'https://www.facebook.com/candeecurriehomes' },
-                { id: 'linkedin', href: 'https://www.linkedin.com/in/candeecurrie' },
+                { id: 'instagram', href: 'https://www.instagram.com/candeecurrieco?igsh=MWZuaDk0MGhlMzJ6dQ==' },
+                { id: 'facebook', href: 'https://www.facebook.com/share/1DDPzdvZjc/?mibextid=wwXIfr' },
+                { id: 'linkedin', href: 'https://www.linkedin.com/in/candee-currie-36a1a280' },
               ].map(({ id, href }) => (
                 <a
                   key={id}
@@ -136,13 +135,6 @@ export function Footer() {
               <Link href="/sitemap.xml" className="text-white/40 text-xs hover:text-gold transition-colors">Sitemap</Link>
             </div>
           </div>
-          {/* MLS Disclaimer */}
-          <p className="text-white/25 text-[10px] mt-4 leading-relaxed max-w-4xl">
-            All listing data is derived from BrightMLS and is deemed reliable but not guaranteed. 
-            IDX information is provided exclusively for consumers&apos; personal, non-commercial use 
-            and may not be used for any purpose other than to identify prospective properties consumers 
-            may be interested in purchasing. © {new Date().getFullYear()} BrightMLS. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

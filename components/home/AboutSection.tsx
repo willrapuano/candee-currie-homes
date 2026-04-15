@@ -8,7 +8,7 @@ const CREDENTIALS = [
   'Arlington resident for 30+ years',
   '$105M+ in closed volume (5-year period)',
   '241 total transactions — buyers & sellers',
-  'BrightMLS | Northern Virginia Association of Realtors',
+  'Northern Virginia market expertise',
   'Hollins University — B.A.',
 ]
 

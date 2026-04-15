@@ -28,7 +28,7 @@ export interface Listing {
     endTime: string
   }
   sourceUrl?: string
-  source?: 'Zillow' | 'Homes.com' | 'BrightMLS'
+  source?: 'Zillow' | 'Homes.com' | 'Website'
   scrapedDate?: string
 }
 

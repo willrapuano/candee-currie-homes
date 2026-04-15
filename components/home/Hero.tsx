@@ -20,15 +20,6 @@ export function Hero() {
       </div>
 
       <div className="relative container-xl pt-24 pb-16 md:pt-32 md:pb-24 flex flex-col items-center text-center px-4 sm:px-6">
-        {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="hidden md:block h-px w-10 bg-gold" />
-          <span className="text-gold text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase text-center">
-            TTR Sotheby&apos;s International Realty
-          </span>
-          <div className="hidden md:block h-px w-10 bg-gold" />
-        </div>
-
         {/* Headline */}
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-tight md:leading-tight text-balance mb-4 md:mb-6">
           Your Northern Virginia
