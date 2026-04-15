@@ -25,7 +25,7 @@ const FAQS = [
   },
   {
     question: 'Is a CMA the same as a Zestimate?',
-    answer: 'No. A CMA is a professional analysis performed by an experienced agent who has actually toured comparable homes. Zestimates and online estimates can be off by 10-20% or more. Candee\'s CMAs are based on local market knowledge and real sold data from BrightMLS.',
+    answer: 'No. A CMA is a professional analysis performed by an experienced agent who has actually toured comparable homes. Zestimates and online estimates can be off by 10-20% or more. Candee\'s CMAs are based on local market knowledge and real recent sales data.',
   },
   {
     question: 'Does getting a CMA mean I have to sell?',

@@ -33,11 +33,11 @@ export default function PrivacyPolicyPage() {
             alerts and market updates you have requested, and (3) comply with legal obligations. We do not 
             sell, rent, or share your personal information with third parties for marketing purposes.
           </p>
-          <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">IDX / MLS Data</h2>
+          <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Property Information</h2>
           <p className="text-charcoal-muted leading-relaxed mb-4">
-            Listing data displayed on this site is sourced from BrightMLS via the Repliers IDX platform. 
-            This data is deemed reliable but not guaranteed. Property information is provided for 
-            consumers&apos; personal, non-commercial use only.
+            Property information displayed on this site is provided for general informational purposes only.
+            Availability, pricing, and property details may change without notice, so buyers should verify all
+            information directly with Candee before relying on it.
           </p>
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Cookies & Analytics</h2>
           <p className="text-charcoal-muted leading-relaxed mb-4">

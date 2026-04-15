@@ -15,6 +15,12 @@ function formatPrice(price: number) {
   return `$${(price / 1000).toFixed(0)}K`
 }
 
+function formatJurisdictionHeading(county: string) {
+  if (county === 'Alexandria') return 'City of Alexandria'
+  if (county === 'Falls Church City') return 'Falls Church City'
+  return `${county} County`
+}
+
 export default function NeighborhoodsPage() {
   const byCity = NEIGHBORHOODS.reduce((acc, n) => {
     const key = n.county
@@ -52,7 +58,7 @@ export default function NeighborhoodsPage() {
           {Object.entries(byCity).map(([county, neighborhoods]) => (
             <div key={county} className="mb-16">
               <div className="flex items-center gap-4 mb-8">
-                <h2 className="font-serif text-2xl text-navy font-bold">{county} County</h2>
+                <h2 className="font-serif text-2xl text-navy font-bold">{formatJurisdictionHeading(county)}</h2>
                 <div className="flex-1 h-px bg-gray-100" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

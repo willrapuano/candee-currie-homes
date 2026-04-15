@@ -33,7 +33,8 @@ export default function HomesForSalePage() {
             </h1>
             <div className="w-16 h-0.5 bg-gold mx-auto mb-6" />
             <p className="text-white/70 text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-              Browse every active listing in Arlington, McLean, Falls Church, Alexandria, and surrounding communities — powered by BrightMLS through TTR Sotheby&apos;s International Realty.
+              Browse homes in Arlington, McLean, Falls Church, Alexandria, and surrounding communities,
+              then connect with Candee for tailored guidance and private showing strategy.
             </p>
             <a
               href="https://www.ttrsir.com/agents/candee-currie"

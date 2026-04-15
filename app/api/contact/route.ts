@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, message, source, interest } = body
+    const { name, email, phone, address, city, zip, message, source, interest } = body
 
     // Validate required fields
     if (!name || !email) {
@@ -32,6 +32,9 @@ export async function POST(request: NextRequest) {
             customField: {
               message,
               interest,
+              address,
+              city,
+              zip,
             },
           }),
         })
@@ -47,7 +50,7 @@ export async function POST(request: NextRequest) {
     // ─── Email notification (placeholder — wire up SMTP or Resend) ─────────
     // TODO: Send email notification to ccurrie@ttrsir.com
     // Using: nodemailer, Resend, or SendGrid
-    console.log('Contact form submission:', { name, email, phone, message, source, interest })
+    console.log('Contact form submission:', { name, email, phone, address, city, zip, message, source, interest })
 
     return NextResponse.json({ success: true, message: 'Message received' })
   } catch (error) {
