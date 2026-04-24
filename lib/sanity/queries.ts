@@ -5,9 +5,11 @@ export const ALL_POSTS_QUERY = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
-    slug,
+    "slug": slug.current,
     excerpt,
-    mainImage,
+    mainImage {
+      asset-> { url }
+    },
     publishedAt,
     categories,
     readTime,
@@ -21,9 +23,11 @@ export const FEATURED_POSTS_QUERY = groq`
   *[_type == "post"] | order(publishedAt desc) [0...4] {
     _id,
     title,
-    slug,
+    "slug": slug.current,
     excerpt,
-    mainImage,
+    mainImage {
+      asset-> { url }
+    },
     publishedAt,
     categories,
     readTime
@@ -34,10 +38,12 @@ export const POST_QUERY = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
     title,
-    slug,
+    "slug": slug.current,
     excerpt,
     body,
-    mainImage,
+    mainImage {
+      asset-> { url }
+    },
     publishedAt,
     categories,
     readTime,

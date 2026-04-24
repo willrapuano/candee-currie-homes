@@ -118,7 +118,7 @@ export default async function BlogPage() {
       <section className="section-padding bg-white">
         <div className="container-xl">
           {/* Featured post */}
-          <Link href={`/blog/${featured.slug.current}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-8 card overflow-hidden mb-16">
+          <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-8 card overflow-hidden mb-16">
             <div className="relative aspect-video lg:aspect-auto lg:min-h-[400px] overflow-hidden">
               <Image
                 src={getImageUrl(featured)}
@@ -154,7 +154,7 @@ export default async function BlogPage() {
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {rest.map((post: any) => (
-              <Link key={post._id} href={`/blog/${post.slug.current}`} className="group card overflow-hidden block">
+              <Link key={post._id} href={`/blog/${post.slug}`} className="group card overflow-hidden block">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={getImageUrl(post)}
