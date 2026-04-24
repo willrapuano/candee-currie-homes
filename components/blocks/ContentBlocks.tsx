@@ -33,7 +33,7 @@ interface SanityBlock {
 }
 
 interface ContentBlocksProps {
-  content: SanityBlock[]
+  content: SanityBlock[] | string
 }
 
 // Portable Text components for standard blocks
@@ -183,8 +183,85 @@ function renderCustomBlock(block: SanityBlock): React.ReactNode {
   }
 }
 
+// Fallback renderer for legacy string bodies (plain text with newlines, ## headings, **bold**, *italic*, etc.)
+function renderMarkdownText(text: string): React.ReactNode[] {
+  const lines = text.split('\n')
+  const result: React.ReactNode[] = []
+  let listItems: React.ReactNode[] = []
+
+  function flushList() {
+    if (listItems.length > 0) {
+      result.push(
+        <ul key={`list-${result.length}`} className="list-disc ml-6 my-4 text-charcoal-muted space-y-1">
+          {listItems}
+        </ul>
+      )
+      listItems = []
+    }
+  }
+
+  function renderInline(str: string, blockKey: string): React.ReactNode {
+    // Split by inline marks: **bold**, *italic*
+    const parts = str.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/)
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={`${blockKey}-b-${i}`} className="font-semibold text-navy">{part.slice(2, -2)}</strong>
+      }
+      if (part.startsWith('*') && part.endsWith('*') && part.length > 1) {
+        return <em key={`${blockKey}-i-${i}`} className="italic">{part.slice(1, -1)}</em>
+      }
+      return part
+    })
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const trimmed = line.trim()
+
+    if (!trimmed) {
+      flushList()
+      continue
+    }
+
+    // Heading ## or ###
+    if (/^#{2,3} /.test(trimmed)) {
+      flushList()
+      const h = trimmed.replace(/^#{2,3}\s+/, '')
+      result.push(
+        <h3 key={`h-${result.length}`} className="font-serif text-xl md:text-2xl text-navy font-bold my-6 mt-8">{renderInline(h, `h-${result.length}`)}</h3>
+      )
+      continue
+    }
+
+    // List item starting with -, *, or number.
+    if (/^[-*]\s/.test(trimmed)) {
+      const item = trimmed.replace(/^[-*]\s+/, '')
+      listItems.push(<li key={`li-${listItems.length}`}>{renderInline(item, `li-${listItems.length}`)}</li>)
+      continue
+    }
+
+    // Regular paragraph
+    flushList()
+    result.push(
+      <p key={`p-${result.length}`} className="text-charcoal-muted leading-relaxed my-4">{renderInline(trimmed, `p-${result.length}`)}</p>
+    )
+  }
+  flushList()
+  return result
+}
+
 export function ContentBlocks({ content }: ContentBlocksProps) {
-  if (!content || content.length === 0) return null
+  // Defensive: body could be Sanity PT block array (new posts) or legacy string (old posts)
+  if (!content) return null
+
+  // Case 1: legacy string body
+  if (typeof content === 'string') {
+    return <div className="prose prose-lg max-w-none">{renderMarkdownText(content)}</div>
+  }
+
+  // Case 2: non-array fallback
+  if (!Array.isArray(content)) return null
+  if (content.length === 0) return null
 
   return (
     <div className="prose prose-lg max-w-none">

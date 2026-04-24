@@ -152,7 +152,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <span className="font-medium text-navy">Candee Currie</span>
                   </div>
                   <span>·</span>
-                  <time>{format(new Date(post.publishedAt), 'MMMM d, yyyy')}</time>
+                  <time>{post.publishedAt ? format(new Date(post.publishedAt), 'MMMM d, yyyy') : 'No date'}</time>
                   {post.readTime && (
                     <>
                       <span>·</span>
