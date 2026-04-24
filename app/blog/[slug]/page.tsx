@@ -183,20 +183,6 @@ export default async function BlogPostPage({ params }: Props) {
                   <p className="text-charcoal-muted">Content coming soon...</p>
                 )}
 
-                {/* CTA */}
-                <div className="mt-12 bg-navy p-8">
-                  <h3 className="font-serif text-2xl text-white font-bold mb-2">
-                    Questions About the Market?
-                  </h3>
-                  <p className="text-white/70 text-sm mb-5">
-                    Candee&apos;s been selling in Northern Virginia for 14+ years. Get personalized advice.
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/contact" className="btn-gold">Contact Candee</Link>
-                    <Link href="/home-value" className="btn-outline-white">Free Home Value</Link>
-                  </div>
-                </div>
-
                 {/* Equal Housing Opportunity */}
                 <div className="mt-8 pt-6 border-t border-gray-100 flex items-center gap-3">
                   <span className="text-2xl" aria-hidden="true">🏠</span>

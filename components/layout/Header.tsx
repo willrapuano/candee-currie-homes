@@ -49,12 +49,6 @@ export function Header() {
             >
               (703) 203-6005
             </a>
-            <Link
-              href="/home-value"
-              className={`text-xs font-semibold tracking-wider uppercase transition-colors hover:text-gold ${isHome && !scrolled ? 'text-gold' : 'text-gold'}`}
-            >
-              Free Home Value
-            </Link>
           </div>
         </div>
       </div>
