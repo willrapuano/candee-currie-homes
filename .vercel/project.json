@@ -1,1 +1,16 @@
-{"projectId":"prj_nmDkKM7ungkUYB9eLfce9ffwJbC1","orgId":"team_0uqBDI4YSqqqiWK6WhlHAU1D","projectName":"candee-currie-homes"}
+{
+  "projectId": "prj_nmDkKM7ungkUYB9eLfce9ffwJbC1",
+  "orgId": "team_0uqBDI4YSqqqiWK6WhlHAU1D",
+  "projectName": "candee-currie-homes",
+  "settings": {
+    "createdAt": 1773776677312,
+    "framework": "nextjs",
+    "devCommand": "npm run dev",
+    "installCommand": "npm install",
+    "buildCommand": "npm run build",
+    "outputDirectory": ".next",
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}
