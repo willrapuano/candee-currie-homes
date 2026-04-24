@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 }
 
-const structuredData = {
+const agentStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
   name: 'Candee Currie',
@@ -36,12 +36,63 @@ const structuredData = {
   },
 }
 
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How long does it take to sell a home in Falls Church, VA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Well-priced homes in Falls Church typically sell within 12–20 days. Homes that are overpriced or poorly staged can sit 60+ days. Pricing correctly from day one is the single biggest factor in time on market.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is my Falls Church home worth?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Home values in Falls Church vary significantly by neighborhood — 22046, 22043, and 22042 can have very different price points per square foot. Candee provides free, personalized home valuations based on recent comps, current market conditions, and your home\'s specific features. Start with our free home valuation to get a baseline estimate.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to make repairs before selling in Falls Church?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Not always — but the right repairs can significantly increase your sale price. Candee recommends a pre-listing inspection to identify any issues. Small investments in paint, lighting, and staging often return 3–5x their cost in the Falls Church market.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the best time of year to sell in Falls Church, VA?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Spring (March–May) is traditionally the strongest season in Northern Virginia real estate, with the highest buyer activity. However, Falls Church\'s proximity to government agencies means year-round demand from relocating professionals. If your timeline is flexible, spring is ideal. If not — every season has motivated buyers.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does it cost to sell a home in Virginia?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Typical seller costs in Virginia include: real estate commission (typically 5–6% split between buyer and seller agents), transfer tax ($1 per $100 of sale price in Falls Church), title insurance, recording fees, and any prorated property taxes. Candee provides a detailed cost breakdown during your listing consultation.',
+      },
+    },
+  ],
+}
+
 export default function FallsChurchSellPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agentStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
       <div className="pt-20">
@@ -71,6 +122,15 @@ export default function FallsChurchSellPage() {
                 Falls Church real estate moves fast — but only homes priced and positioned correctly sell at top dollar. 
                 Here&apos;s what you need to know before listing.
               </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/home-value" className="btn-gold">
+                  Get My Free Home Valuation
+                </Link>
+                <Link href="/contact" className="text-white/70 hover:text-gold transition-colors text-sm self-center underline underline-offset-4">
+                  Or schedule a call →
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -103,6 +163,7 @@ export default function FallsChurchSellPage() {
                       <li>• <strong>Buyer demand:</strong> High — limited inventory drives competition</li>
                       <li>• <strong>Year-over-year appreciation:</strong> 3–5% annually</li>
                     </ul>
+                    <p className="text-xs text-charcoal-muted/40 mt-3">Based on Falls Church market data as of April 2026</p>
                   </div>
 
                   <h2 className="font-serif text-3xl text-navy font-bold mb-6 mt-12">
