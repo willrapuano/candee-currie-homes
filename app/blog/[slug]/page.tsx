@@ -2,7 +2,19 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { format } from 'date-fns'
+import { format, isValid } from 'date-fns'
+
+/** Safe date formatter — returns empty string for invalid dates like "TBDT..." */
+function safeFormat(dateStr: string | undefined): string {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (!isValid(d)) return ''
+    return format(d, 'MMMM d, yyyy')
+  } catch {
+    return ''
+  }
+}
 import { sanityClientNoCache } from '@/lib/sanity/client'
 import { POST_QUERY, POST_SLUGS_QUERY, ALL_POSTS_QUERY, FEATURED_POSTS_QUERY } from '@/lib/sanity/queries'
 import { getBlogPostSchema, getBreadcrumbSchema } from '@/lib/schema-org'
@@ -152,7 +164,7 @@ export default async function BlogPostPage({ params }: Props) {
                     <span className="font-medium text-navy">Candee Currie</span>
                   </div>
                   <span>·</span>
-                  <time>{post.publishedAt ? format(new Date(post.publishedAt), 'MMMM d, yyyy') : 'No date'}</time>
+                  <time>{safeFormat(post.publishedAt) || 'No date set'}</time>
                   {post.readTime && (
                     <>
                       <span>·</span>
