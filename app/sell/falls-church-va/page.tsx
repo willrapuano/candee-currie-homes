@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Selling a Home in Falls Church, VA | Candee Currie — Local Market Expert',
   description:
-    'Selling a home in Falls Church, VA? Get expert guidance on pricing, staging, and marketing your Falls Church property. 480+ monthly searches for Falls Church real estate — let us position your home to win.',
+    'Expert guidance on pricing, staging, and marketing your Falls Church, VA home. Get a free, data-driven valuation from an Associate Broker who knows the 22046 market inside and out.',
   keywords: [
     'selling a home in Falls Church VA',
     'Falls Church VA real estate',
@@ -95,7 +95,7 @@ export default function FallsChurchSellPage() {
 
                   <div className="bg-cream p-6 rounded-lg border-l-4 border-gold my-8 not-prose">
                     <h3 className="font-serif text-xl text-navy font-bold mb-2">
-                      Key Fall Church Market Stats — 2026
+                      Key Falls Church Market Stats — 2026
                     </h3>
                     <ul className="space-y-2 text-charcoal-muted">
                       <li>• <strong>Median sale price:</strong> $825,000–$1.1M (varies by neighborhood)</li>
@@ -176,6 +176,34 @@ export default function FallsChurchSellPage() {
                         <div>
                           <h3 className="font-serif text-lg text-navy font-bold mb-1">{item.title}</h3>
                           <p className="text-charcoal-muted text-sm">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* ===== WHY WORK WITH CANDEE ===== */}
+                  <h2 className="font-serif text-3xl text-navy font-bold mb-6 mt-16">
+                    Why Work With Candee to Sell Your Falls Church Home
+                  </h2>
+
+                  <p className="text-charcoal-muted leading-relaxed">
+                    Selling a home isn&apos;t just about putting it on the MLS and waiting. 
+                    In the Falls Church market, the difference between average and exceptional comes down to 
+                    local expertise, strategic pricing, and a network that reaches the right buyers.
+                  </p>
+
+                  <div className="space-y-6 not-prose my-8">
+                    {[
+                      { icon: '🏠', title: '20+ Years in Northern Virginia', desc: 'Candee has lived, worked, and sold across Arlington, Falls Church, McLean, and Great Falls. She knows which neighborhoods are trending, which school districts drive premiums, and what buyers in each area are willing to pay.' },
+                      { icon: '📊', title: 'Data-Driven Pricing, Not Guesswork', desc: 'Every listing starts with a comparative market analysis — not a Zestimate. Candee pulls real-time comps, accounts for your specific upgrades, and sets a pricing strategy calibrated to current Falls Church demand.' },
+                      { icon: '🌐', title: 'Sotheby\'s Global Reach', desc: 'As a TTR Sotheby\'s International Realty associate broker, your listing gets exposure across 70+ countries. Falls Church luxury buyers don\'t just come from Virginia — they come from New York, California, and overseas.' },
+                      { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers. She\'s negotiated against every type of buyer agent, handled every inspection scenario, and knows how to structure offers that protect your bottom line.' },
+                    ].map((item) => (
+                      <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
+                        <div className="flex-shrink-0 text-2xl">{item.icon}</div>
+                        <div>
+                          <h3 className="font-serif text-lg text-navy font-bold mb-1">{item.title}</h3>
+                          <p className="text-charcoal-muted text-sm leading-relaxed">{item.desc}</p>
                         </div>
                       </div>
                     ))}
