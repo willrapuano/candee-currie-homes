@@ -121,9 +121,6 @@ export function Header() {
             <Link href="/contact" className="btn-gold w-full text-center">
               Contact Candee
             </Link>
-            <Link href="/home-value" className="btn-outline-white w-full text-center">
-              Free Home Value
-            </Link>
           </div>
         </div>
       </div>
