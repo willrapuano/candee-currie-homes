@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import '../styles/globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -9,7 +10,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://candeecurriehomes.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Candee Currie | Arlington & Northern Virginia Real Estate | TTR Sotheby\'s',
+    default: 'Candee Currie | Arlington & Northern Virginia Real Estate | TTR Sotheby\'s International Realty',
     template: '%s | Candee Currie Homes',
   },
   description:
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Candee Currie Homes',
     title: 'Candee Currie | Arlington & Northern Virginia Real Estate',
     description:
-      "Top-producing Associate Broker at TTR Sotheby's. 14 years, 241 transactions, $105M+ volume in Arlington, McLean, Falls Church & Alexandria.",
+      "Top-producing Associate Broker at TTR Sotheby's International Realty. 14 years, 241 transactions, $105M+ volume in Arlington, McLean, Falls Church & Alexandria.",
     images: [
       {
         url: `${SITE_URL}/images/og-homepage.jpg`,
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Candee Currie | Arlington VA Real Estate',
-    description: 'TTR Sotheby\'s Associate Broker. 241 transactions, $105M+ volume. Serving Arlington, McLean, Falls Church & Alexandria.',
+    description: 'TTR Sotheby\'s International Realty Associate Broker. 241 transactions, $105M+ volume. Serving Arlington, McLean, Falls Church & Alexandria.',
     images: [`${SITE_URL}/images/og-homepage.jpg`],
   },
   robots: {
@@ -96,6 +97,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen flex flex-col bg-white">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NY02E9TCRF"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NY02E9TCRF');`}
+        </Script>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

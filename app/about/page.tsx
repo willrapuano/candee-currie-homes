@@ -6,7 +6,7 @@ import { Testimonials } from '@/components/home/Testimonials'
 import { getBreadcrumbSchema } from '@/lib/schema-org'
 
 export const metadata: Metadata = {
-  title: 'About Candee Currie | Arlington VA Realtor | TTR Sotheby\'s',
+  title: 'About Candee Currie | Arlington VA Realtor | TTR Sotheby\'s International Realty',
   description:
     "Meet Candee Currie — Associate Broker at TTR Sotheby's International Realty. 14+ years serving Arlington, McLean, Falls Church & Alexandria VA. 241 transactions, $105M+ volume.",
   alternates: { canonical: '/about' },
@@ -43,7 +43,7 @@ export default function AboutPage() {
         <section className="bg-navy py-24">
           <div className="container-xl">
             <div className="max-w-2xl">
-              <p className="section-label">Associate Broker · TTR Sotheby&apos;s</p>
+              <p className="section-label">Associate Broker · TTR Sotheby&apos;s International Realty</p>
               <h1 className="font-serif text-5xl md:text-6xl text-white font-bold leading-tight mb-4">
                 About <span className="text-gold">Candee Currie</span>
               </h1>
@@ -73,8 +73,8 @@ export default function AboutPage() {
                 </div>
                 {/* Sotheby's badge */}
                 <div className="absolute bottom-4 right-4 bg-navy border border-gold/30 px-4 py-3">
-                  <p className="text-gold text-[9px] font-bold tracking-[0.2em] uppercase">TTR Sotheby&apos;s</p>
-                  <p className="text-white text-[9px] tracking-[0.15em] uppercase">International Realty</p>
+                  <p className="text-gold text-[9px] font-bold tracking-[0.2em] uppercase">TTR Sotheby&apos;s International</p>
+                  <p className="text-white text-[9px] tracking-[0.15em] uppercase">Realty</p>
                 </div>
               </div>
 
