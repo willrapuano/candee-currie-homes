@@ -71,9 +71,9 @@ interface Props {
 export async function generateStaticParams() {
   try {
     const slugs = await sanityClientNoCache.fetch(POST_SLUGS_QUERY)
-    return slugs.map((s: { slug: string }) => ({ slug: s.slug }))
-  } catch {
-    // Fallback to empty array - will 404 for any non-pre-rendered slug
+    return (slugs || []).map((s: { slug: string }) => ({ slug: s.slug }))
+  } catch (err) {
+    console.error('[blog/[slug]] generateStaticParams soft-fail', err)
     return []
   }
 }

@@ -13,8 +13,15 @@ interface SellerGuidePageProps {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: SellerGuidePageProps): Promise<Metadata> {
-  const guide = await sanityClient.fetch(SELLER_GUIDE_QUERY, { slug: params.slug })
-  
+  // generateMetadata soft-fail
+  let guide: any = null
+  try {
+    guide = await sanityClient.fetch(SELLER_GUIDE_QUERY, { slug: params.slug })
+  } catch (err) {
+    console.error('[sell/[slug]] generateMetadata soft-fail', err)
+    return { title: 'Seller Guide | Candee Currie' }
+  }
+
   if (!guide) {
     return {
       title: 'Guide Not Found | Candee Currie',
@@ -40,8 +47,14 @@ export async function generateMetadata({ params }: SellerGuidePageProps): Promis
 
 // Generate static paths for all seller guides
 export async function generateStaticParams() {
-  const guides = await sanityClient.fetch(`*[_type == "sellerGuide" && defined(slug.current)] { "slug": slug.current }`)
-  return guides.map((guide: { slug: string }) => ({ slug: guide.slug }))
+  // soft-fail: sanity build guard — never crash production builds on Sanity auth/network faults
+  try {
+    const guides = await sanityClient.fetch(`*[_type == "sellerGuide" && defined(slug.current)] { "slug": slug.current }`)
+    return (guides || []).map((guide: { slug: string }) => ({ slug: guide.slug }))
+  } catch (err) {
+    console.error('[sell/[slug]] generateStaticParams soft-fail', err)
+    return []
+  }
 }
 
 // Generate JSON-LD structured data
@@ -94,7 +107,14 @@ function generateStructuredData(guide: any) {
 }
 
 export default async function SellerGuidePage({ params }: SellerGuidePageProps) {
-  const guide = await sanityClient.fetch(SELLER_GUIDE_QUERY, { slug: params.slug })
+  // page soft-fail sanity
+  let guide: any = null
+  try {
+    guide = await sanityClient.fetch(SELLER_GUIDE_QUERY, { slug: params.slug })
+  } catch (err) {
+    console.error('[sell/[slug]] page soft-fail sanity', err)
+    notFound()
+  }
 
   if (!guide) {
     notFound()
