@@ -648,6 +648,10 @@ async function publishPost(filePath, options) {
     }
   } else {
     console.log(`  🚫 No image matched — omitting mainImage`);
+    if (process.env.REQUIRE_BLOG_IMAGE === '1') {
+      throw new Error('BLOCK_PUBLISH_WITHOUT_IMAGE: ' + (meta.slug || filePath));
+    }
+    console.warn('  ⚠️ Publish proceeding without mainImage; UI will look generic until backfilled.');
   }
 
   if (options.dryRun) {

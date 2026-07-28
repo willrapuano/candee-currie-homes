@@ -55,7 +55,7 @@ function safeFormatShort(dateStr: string | undefined): string {
 }
 
 function getImageUrl(post: any): string {
-  return post.mainImage?.asset?.url || 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80'
+  return post.mainImage?.asset?.url || ''
 }
 
 function getCategory(post: any): string {

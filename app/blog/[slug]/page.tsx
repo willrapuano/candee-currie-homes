@@ -120,7 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   // Get main image URL
-  const mainImageUrl = post.mainImage?.asset?.url || 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=80'
+  const mainImageUrl = post.mainImage?.asset?.url || ''
   const category = resolveCategory(post)
 
   // Build schema
