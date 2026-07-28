@@ -20,7 +20,9 @@ import { POST_QUERY, POST_SLUGS_QUERY, ALL_POSTS_QUERY, FEATURED_POSTS_QUERY } f
 import { getBlogPostSchema, getBreadcrumbSchema } from '@/lib/schema-org'
 import { ContentBlocks } from '@/components/blocks/ContentBlocks'
 
-export const revalidate = 300
+export const revalidate = 60
+// Allow newly published Sanity slugs to render without a full redeploy.
+export const dynamicParams = true
 
 const CATEGORY_LABELS: Record<string, string> = {
   'market-update': 'Market Update',
@@ -29,6 +31,27 @@ const CATEGORY_LABELS: Record<string, string> = {
   'buyers-guide': "Buyer's Guide",
   'home-tips': 'Home Tips',
   lifestyle: 'Lifestyle',
+}
+
+function resolveCategory(post: { categories?: string[] | null; title?: string; slug?: { current?: string } | string | null }) {
+  const existing = post.categories?.[0]
+  if (existing && CATEGORY_LABELS[existing]) return existing
+
+  const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current || ''
+  const t = `${post.title || ''} ${slug}`.toLowerCase()
+  if (/(neighborhood guide|living in|local'?s (honest )?guide|which .+ neighborhood|best neighborhoods|vs .+ luxury neighborhood)/.test(t)
+    || /(neighborhood-guide|living-in-)/.test(t)) {
+    return 'neighborhood-spotlight'
+  }
+  if (/(best time to sell|closing costs|pricing strategy|seller|sell your home|sell a home|cost to sell)/.test(t)) {
+    return 'sellers-guide'
+  }
+  if (/(first-time home buyer|buyer guide|homes for sale|buying a|for buyers|relocating|moving to|1 million buy)/.test(t)) {
+    return 'buyers-guide'
+  }
+  if (/(market update|real estate market|housing market)/.test(t)) return 'market-update'
+  if (/(lifestyle|commute|parks|dining|culture)/.test(t)) return 'lifestyle'
+  return existing || 'home-tips'
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -98,7 +121,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   // Get main image URL
   const mainImageUrl = post.mainImage?.asset?.url || 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1200&q=80'
-  const category = post.categories?.[0] || 'market-update'
+  const category = resolveCategory(post)
 
   // Build schema
   const schemaOrg = getBlogPostSchema({
