@@ -1,28 +1,54 @@
 import { createClient } from '@sanity/client';
-import { createReadStream, readFileSync, renameSync } from 'fs';
-import { readFile } from 'fs/promises';
+import { appendFileSync, createReadStream, existsSync, mkdirSync, readFileSync, readdirSync, renameSync } from 'fs';
 import path from 'path';
 import { randomBytes } from 'crypto';
+import { spawnSync } from 'child_process';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+for (const envPath of [
+  path.join(__dirname, '.env.local'),
+  path.join(__dirname, '.env.production.local'),
+]) {
+  if (existsSync(envPath)) {
+    dotenv.config({ path: envPath, override: false, quiet: true });
+  }
+}
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+const token = process.env.SANITY_API_TOKEN;
+
+if (!projectId) {
+  throw new Error('NEXT_PUBLIC_SANITY_PROJECT_ID is required. Add it to site/.env.local or export it before running this script.');
+}
+
+if (!dataset) {
+  throw new Error('NEXT_PUBLIC_SANITY_DATASET is required. Add it to site/.env.local or export it before running this script.');
+}
+
+if (!token) {
+  throw new Error('SANITY_API_TOKEN is required. Add it to site/.env.local or export it before running this script.');
+}
 
 const client = createClient({
-  projectId: 'ej27mt39',
-  dataset: 'production',
-  token: 'sktduwqwKdJnL5n5pE2nyPs9DqBocM7DfANFPaymKdyaOFuN1Lo9YGmRKnRJHiz7lZKcSDL2XQcMAs3Wgau8i7fmbOsHlfRGHReSsFnarWk9bV5m7uCMctippLqfjQA2W4WeWw0lar7qA8TWn87Jw6nG3lsYoTeoMVJ6vZedNRXsT0LqfHD2',
+  projectId,
+  dataset,
+  token,
   apiVersion: '2024-01-01',
   useCdn: false,
 });
 
-const PROCESSED_DIR = '/Users/jarvis/.openclaw/workspace/clients/candee-currie/blog-queue/processed';
-const IMAGES_DIR = '/Users/jarvis/.openclaw/workspace/clients/candee-currie/blog-queue/images';
-
-const POSTS = [
-  { file: '2026-03-26-closing-costs-selling-home-northern-virginia.md', image: '2026-03-31-best-time-to-sell-home-northern-virginia.jpg' },
-  { file: '2026-03-27-ballston-arlington-va-neighborhood-guide.md', image: '2026-04-01-arlington-va-neighborhoods-guide.jpg' },
-  { file: '2026-03-27-great-falls-vs-mclean-luxury-neighborhood-guide.md', image: null },
-  { file: '2026-03-27-relocating-to-northern-virginia.md', image: '2026-04-01-moving-to-arlington-va.jpg' },
-  { file: '2026-03-28-living-in-arlington-va.md', image: '2026-04-01-living-in-rosslyn-va.jpg' },
-  { file: '2026-03-28-northern-virginia-real-estate-market-spring-2026.md', image: null },
-];
+const CLIENT_ROOT = path.resolve(__dirname, '..');
+const QUEUE_DIR = path.join(CLIENT_ROOT, 'blog-queue');
+const PUBLISHED_DIR = path.join(QUEUE_DIR, 'published');
+const IMAGES_DIR = path.join(QUEUE_DIR, 'images');
+const VALIDATOR = path.join(CLIENT_ROOT, 'scripts', 'validate-candee-draft.mjs');
+const PUBLISH_LOG = path.join(CLIENT_ROOT, 'logs', 'publish-log.md');
+const MIN_BODY_WORDS = 300;
 
 function genKey() {
   return randomBytes(8).toString('hex');
@@ -65,45 +91,66 @@ function stripInlineMarkdown(text) {
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 }
 
-// Convert inline markdown to Portable Text spans
-function parseInlineSpans(text) {
-  // Handle **bold** and *italic*
-  const spans = [];
-  const regex = /(\*\*([^*]+)\*\*|\*([^*]+)\*|([^*]+))/g;
+// Convert inline markdown to Portable Text spans and link annotations.
+function parseInlineContent(text) {
+  const children = [];
+  const markDefs = [];
+  const tokenRe = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`)/g;
+  let lastIndex = 0;
   let match;
-  while ((match = regex.exec(text)) !== null) {
-    if (match[2]) {
-      spans.push({ _type: 'span', _key: genKey(), text: match[2], marks: ['strong'] });
-    } else if (match[3]) {
-      spans.push({ _type: 'span', _key: genKey(), text: match[3], marks: ['em'] });
-    } else if (match[4]) {
-      if (match[4].length > 0) {
-        spans.push({ _type: 'span', _key: genKey(), text: match[4], marks: [] });
-      }
-    }
+
+  function pushText(value, marks = []) {
+    if (!value) return;
+    children.push({ _type: 'span', _key: genKey(), text: value, marks });
   }
-  return spans.length > 0 ? spans : [{ _type: 'span', _key: genKey(), text: text, marks: [] }];
+
+  while ((match = tokenRe.exec(text)) !== null) {
+    pushText(text.slice(lastIndex, match.index));
+
+    if (match[2] && match[3]) {
+      const key = genKey();
+      markDefs.push({ _key: key, _type: 'link', href: match[3] });
+      pushText(match[2], [key]);
+    } else if (match[4]) {
+      pushText(match[4], ['strong']);
+    } else if (match[5]) {
+      pushText(match[5], ['em']);
+    } else if (match[6]) {
+      pushText(match[6], ['code']);
+    }
+
+    lastIndex = tokenRe.lastIndex;
+  }
+
+  pushText(text.slice(lastIndex));
+
+  return {
+    children: children.length > 0 ? children : [{ _type: 'span', _key: genKey(), text, marks: [] }],
+    markDefs,
+  };
 }
 
 function makeBlock(style, text) {
+  const inline = parseInlineContent(text);
   return {
     _type: 'block',
     _key: genKey(),
     style,
-    markDefs: [],
-    children: parseInlineSpans(text),
+    markDefs: inline.markDefs,
+    children: inline.children,
   };
 }
 
 function makeListBlock(listItem, text) {
+  const inline = parseInlineContent(text);
   return {
     _type: 'block',
     _key: genKey(),
     style: 'normal',
     listItem,
     level: 1,
-    markDefs: [],
-    children: parseInlineSpans(text),
+    markDefs: inline.markDefs,
+    children: inline.children,
   };
 }
 
@@ -331,26 +378,240 @@ async function checkExists(slug) {
     `*[_type=="post" && slug.current == $slug][0]._id`,
     { slug }
   );
-  return !!result;
+  return result || null;
 }
 
-async function publishPost({ file, image }) {
-  const filePath = path.join(PROCESSED_DIR, file);
+function truncate(text, max) {
+  if (!text) return '';
+  const clean = text.replace(/\s+/g, ' ').trim();
+  return clean.length <= max ? clean : `${clean.slice(0, max - 1).trim()}…`;
+}
+
+function firstParagraph(body) {
+  return body
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .find((part) => part && !part.startsWith('#') && !part.startsWith('---')) || '';
+}
+
+function wordCount(body) {
+  return body.replace(/^---[\s\S]*?---/, '').trim().split(/\s+/).filter(Boolean).length;
+}
+
+function safeStamp(date = new Date()) {
+  return date.toISOString().replace(/[:.]/g, '-');
+}
+
+function sortableDate(filePath) {
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    const { meta } = parseFrontmatter(content);
+    const frontmatterDate = meta.date || meta.publish_date || meta.date_drafted || meta.date_started;
+    if (frontmatterDate) return String(frontmatterDate).substring(0, 10);
+  } catch {
+    // Fall back to filename below.
+  }
+
+  const filenameDate = path.basename(filePath).match(/^(\d{4}-\d{2}-\d{2})/);
+  return filenameDate?.[1] || '9999-12-31';
+}
+
+function validatePostShape(filePath, meta, body) {
+  const errors = [];
+  if (!meta.title || meta.title.trim().length < 10) errors.push('missing or too-short title');
+  if (!meta.slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(meta.slug)) errors.push('missing or invalid slug');
+  if (wordCount(body) < MIN_BODY_WORDS) errors.push(`body word count must be at least ${MIN_BODY_WORDS}`);
+  if (errors.length > 0) {
+    throw new Error(`basic validation failed: ${errors.join('; ')}`);
+  }
+}
+
+function classifyFromText(title = '', slug = '', keyword = '') {
+  const t = `${title} ${slug} ${keyword}`.toLowerCase();
+
+  // Seller intent first (pricing/closing/timeline)
+  if (/(best time to sell|closing costs|pricing strategy|seller|sell your home|sell a home|cost to sell|net proceeds|listing agreement|staging your home)/.test(t)) {
+    return { category: 'sellers-guide', pillar: 'seller-authority' };
+  }
+
+  // Explicit market updates
+  if (/(market update|real estate market|housing market|inventory crisis|mortgage rates)/.test(t) && !/(neighborhood|living in)/.test(t)) {
+    return { category: 'market-update', pillar: 'market-intel' };
+  }
+
+  // Neighborhood guides / living-in content
+  if (/(neighborhood guide|living in|neighborhood spotlight|local'?s (honest )?guide|which .+ neighborhood|best neighborhoods|vs .+ luxury neighborhood)/.test(t)
+    || /(neighborhood-guide|living-in-)/.test(t)) {
+    return { category: 'neighborhood-spotlight', pillar: 'neighborhood' };
+  }
+
+  // Buyer guides
+  if (/(first-time home buyer|buyer guide|buyers guide|homes for sale|buying a|for buyers|what does \$1 million|1 million buy|relocating|moving to)/.test(t)) {
+    return { category: 'buyers-guide', pillar: 'market-intel' };
+  }
+
+  if (/(lifestyle|commute|parks and trails|dining|arts and culture|farmers markets|seasons)/.test(t)) {
+    return { category: 'lifestyle', pillar: 'lifestyle' };
+  }
+
+  return { category: 'home-tips', pillar: undefined };
+}
+
+function categoryFor(meta) {
+  const category = String(meta.category || '').toLowerCase();
+  if (category.includes('neighborhood')) return 'neighborhood-spotlight';
+  if (category.includes('buy')) return 'buyers-guide';
+  if (category.includes('sell')) return 'sellers-guide';
+  if (category.includes('lifestyle')) return 'lifestyle';
+  if (category.includes('market')) return 'market-update';
+
+  // Many Candee drafts omit category — infer from title/slug/keyword
+  return classifyFromText(meta.title || '', meta.slug || '', meta.target_keyword || '').category;
+}
+
+function pillarFor(meta) {
+  const category = String(meta.category || '').toLowerCase();
+  if (category.includes('sell')) return 'seller-authority';
+  if (category.includes('neighborhood')) return 'neighborhood';
+  if (category.includes('lifestyle')) return 'lifestyle';
+  if (category.includes('market')) return 'market-intel';
+  if (category.includes('buy')) return 'market-intel';
+
+  return classifyFromText(meta.title || '', meta.slug || '', meta.target_keyword || '').pillar;
+}
+
+function validateDraft(filePath) {
+  const result = spawnSync(process.execPath, [VALIDATOR, filePath], {
+    encoding: 'utf8',
+  });
+
+  let parsed = null;
+  try {
+    parsed = JSON.parse(result.stdout || '{}');
+  } catch {
+    // Keep parsed as null and fail below with command output.
+  }
+
+  if (result.status !== 0 || !parsed?.ok) {
+    const details = parsed?.errors?.join('; ') || result.stderr || result.stdout || 'validator failed';
+    throw new Error(`validation failed: ${details}`);
+  }
+
+  return parsed;
+}
+
+function resolveQueueFile(file) {
+  if (path.isAbsolute(file)) return file;
+  const cwdRelative = path.resolve(process.cwd(), file);
+  if (existsSync(cwdRelative)) return cwdRelative;
+  return path.join(QUEUE_DIR, file);
+}
+
+function parseArgs(argv) {
+  const args = {
+    all: false,
+    dryRun: false,
+    archive: true,
+    files: [],
+  };
+
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === '--all') {
+      args.all = true;
+    } else if (arg === '--dry-run') {
+      args.dryRun = true;
+    } else if (arg === '--no-archive') {
+      args.archive = false;
+    } else if (arg === '--file') {
+      const next = argv[++i];
+      if (!next) throw new Error('--file requires a value');
+      args.files.push(next);
+    } else if (arg.startsWith('--')) {
+      throw new Error(`unknown option: ${arg}`);
+    } else {
+      args.files.push(arg);
+    }
+  }
+
+  if (!args.all && args.files.length === 0) {
+    throw new Error('pass one or more markdown files, or use --all to publish every validated queue draft');
+  }
+
+  return args;
+}
+
+function discoverQueueFiles() {
+  return readdirSync(QUEUE_DIR)
+    .filter((file) => file.endsWith('.md'))
+    .map((file) => path.join(QUEUE_DIR, file))
+    .filter((filePath) => !filePath.endsWith('.published') && !filePath.includes(`${path.sep}processed${path.sep}`))
+    .sort((a, b) => sortableDate(a).localeCompare(sortableDate(b)) || path.basename(a).localeCompare(path.basename(b)));
+}
+
+function appendPublishLog(result) {
+  mkdirSync(path.dirname(PUBLISH_LOG), { recursive: true });
+  const stamp = new Date().toISOString();
+  const entry = [
+    `## ${stamp}`,
+    `**Result:** ${result.status}`,
+    `**Title:** "${result.title}"`,
+    `**Slug:** ${result.slug}`,
+    `**Category:** ${result.category}`,
+    `**File:** ${result.filePath}`,
+    result.archivedTo ? `**Archived To:** ${result.archivedTo}` : null,
+    `**Sanity Project:** ${projectId}`,
+    `**Dataset:** ${dataset}`,
+    '',
+  ].filter(Boolean).join('\n');
+  appendFileSync(PUBLISH_LOG, entry);
+}
+
+function archivePublishedFile(filePath) {
+  mkdirSync(PUBLISHED_DIR, { recursive: true });
+  const target = path.join(PUBLISHED_DIR, `${safeStamp()}--${path.basename(filePath)}`);
+  if (existsSync(target)) {
+    const uniqueTarget = path.join(PUBLISHED_DIR, `${safeStamp()}-${Date.now()}--${path.basename(filePath)}`);
+    renameSync(filePath, uniqueTarget);
+    return uniqueTarget;
+  }
+  renameSync(filePath, target);
+  return target;
+}
+
+async function publishPost(filePath, options) {
+  filePath = resolveQueueFile(filePath);
+  if (!existsSync(filePath)) {
+    throw new Error(`file not found: ${filePath}`);
+  }
+
+  const validation = validateDraft(filePath);
   const content = readFileSync(filePath, 'utf-8');
   const { meta, body } = parseFrontmatter(content);
+  validatePostShape(filePath, meta, body);
 
-  const slug = meta.slug || file.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+  const slug = meta.slug || path.basename(filePath).replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
   const title = meta.title || slug;
   const date = meta.date || meta.publish_date || meta.date_drafted || '2026-03-26';
-  const excerpt = meta.meta_description || '';
+  const excerpt = truncate(meta.meta_description || firstParagraph(body), 190);
+  const wc = validation.wordCount || wordCount(body);
+  const category = categoryFor(meta);
+  const pillar = pillarFor(meta);
 
   console.log(`\n📄 Processing: ${slug}`);
 
   // Dedup check
   const exists = await checkExists(slug);
   if (exists) {
-    console.log(`  ⏭️  Already exists in Sanity — skipping`);
-    return { slug, blocks: 0, status: 'skipped (already exists)' };
+    console.log(`  ⏭️  Already exists in Sanity (${exists}) — skipping`);
+    let archivedTo = null;
+    if (!options.dryRun && options.archive) {
+      archivedTo = archivePublishedFile(filePath);
+      console.log(`  📁 Archived existing post source: ${archivedTo}`);
+    }
+    const result = { slug, title, filePath, archivedTo, blocks: 0, status: 'skipped (already exists)', category };
+    if (!options.dryRun) appendPublishLog(result);
+    return result;
   }
 
   // Convert body to Portable Text
@@ -365,15 +626,23 @@ async function publishPost({ file, image }) {
     slug: { _type: 'slug', current: slug },
     publishedAt: `${date.substring(0, 10)}T00:00:00.000Z`,
     excerpt,
+    categories: [category],
+    readTime: Math.max(1, Math.ceil(wc / 200)),
+    metaTitle: truncate(title, 60),
+    metaDescription: truncate(excerpt, 160),
+    targetKeyword: meta.target_keyword || undefined,
+    contentPillar: pillar,
+    isCornerstone: category === 'neighborhood-spotlight',
     body: blocks,
   };
 
-  // Upload image if matched
-  if (image) {
-    const imagePath = path.join(IMAGES_DIR, image);
+  // Upload image if a matching image exists in blog-queue/images.
+  const imageCandidates = ['jpg', 'jpeg', 'png', 'webp'].map((ext) => path.join(IMAGES_DIR, `${slug}.${ext}`));
+  const imagePath = imageCandidates.find((candidate) => existsSync(candidate));
+  if (imagePath) {
     try {
       doc.mainImage = await uploadImage(imagePath, title);
-      console.log(`  🖼️  Image uploaded: ${image}`);
+      console.log(`  🖼️  Image uploaded: ${path.basename(imagePath)}`);
     } catch (err) {
       console.log(`  ⚠️  Image upload failed: ${err.message} — proceeding without`);
     }
@@ -381,34 +650,51 @@ async function publishPost({ file, image }) {
     console.log(`  🚫 No image matched — omitting mainImage`);
   }
 
+  if (options.dryRun) {
+    console.log(`  🧪 Dry run — not publishing`);
+    return { slug, title, filePath, blocks: blocks.length, status: 'dry-run', category };
+  }
+
   // Publish to Sanity
   await client.createOrReplace(doc);
   console.log(`  ✅ Published: post-${slug}`);
 
-  // Mark file as done
-  try {
-    renameSync(filePath, filePath + '.done');
-    console.log(`  📁 Marked as done`);
-  } catch (err) {
-    console.log(`  ⚠️  Could not rename file: ${err.message}`);
+  let archivedTo = null;
+  if (options.archive) {
+    try {
+      archivedTo = archivePublishedFile(filePath);
+      console.log(`  📁 Archived: ${archivedTo}`);
+    } catch (err) {
+      console.log(`  ⚠️  Could not archive file: ${err.message}`);
+    }
   }
 
-  return { slug, blocks: blocks.length, status: 'published' };
+  const result = { slug, title, filePath, archivedTo, blocks: blocks.length, status: 'published', category };
+  appendPublishLog(result);
+  return result;
 }
 
 async function main() {
+  const options = parseArgs(process.argv.slice(2));
+  const files = options.all ? discoverQueueFiles() : options.files.map(resolveQueueFile);
+
   console.log('🚀 Starting Candee Currie blog publishing pipeline...\n');
+  console.log(`Project: ${projectId} · Dataset: ${dataset}`);
+  console.log(`Files: ${files.length}`);
+
   const results = [];
 
-  for (const post of POSTS) {
+  for (const file of files) {
     try {
-      const result = await publishPost(post);
+      const result = await publishPost(file, options);
       results.push(result);
     } catch (err) {
-      console.error(`  ❌ Error publishing ${post.file}: ${err.message}`);
+      console.error(`  ❌ Error publishing ${path.basename(file)}: ${err.message}`);
       results.push({
-        slug: post.file,
+        slug: path.basename(file),
+        title: path.basename(file),
         blocks: 0,
+        category: 'unknown',
         status: `error: ${err.message}`,
       });
     }
@@ -422,6 +708,27 @@ async function main() {
     console.log(`${r.slug} | ${r.blocks} | ${r.status}`);
   }
   console.log('='.repeat(80));
+
+  if (results.some((result) => result.status.startsWith('error:'))) {
+    process.exitCode = 1;
+  }
 }
 
-main().catch(console.error);
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err.message);
+    process.exitCode = 1;
+  });
+}
+
+export {
+  QUEUE_DIR,
+  appendPublishLog,
+  discoverQueueFiles,
+  parseFrontmatter,
+  publishPost,
+  resolveQueueFile,
+  sortableDate,
+  validateDraft,
+  validatePostShape,
+};

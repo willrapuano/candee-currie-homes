@@ -20,12 +20,15 @@ import { POST_QUERY, POST_SLUGS_QUERY, ALL_POSTS_QUERY, FEATURED_POSTS_QUERY } f
 import { getBlogPostSchema, getBreadcrumbSchema } from '@/lib/schema-org'
 import { ContentBlocks } from '@/components/blocks/ContentBlocks'
 
+export const revalidate = 300
+
 const CATEGORY_LABELS: Record<string, string> = {
   'market-update': 'Market Update',
-  'neighborhood-spotlight': 'Neighborhood Spotlight',
+  'neighborhood-spotlight': 'Neighborhood Guide',
   'sellers-guide': "Seller's Guide",
   'buyers-guide': "Buyer's Guide",
   'home-tips': 'Home Tips',
+  lifestyle: 'Lifestyle',
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -34,6 +37,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'sellers-guide': 'bg-navy',
   'buyers-guide': 'bg-green-600',
   'home-tips': 'bg-purple-600',
+  lifestyle: 'bg-emerald-700',
 }
 
 interface Props {
