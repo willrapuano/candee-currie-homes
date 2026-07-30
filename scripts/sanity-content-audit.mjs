@@ -79,11 +79,32 @@ note(
 );
 
 // 2. document types the site never renders
+//
+// Severity turns on whether the content is actually unreachable, not on whether the
+// type is queried. The first version of this check treated any unqueried type as
+// blocking, which kept failing on 18 `blogPost` documents whose articles had already
+// been migrated onto `post` at the same slugs — the type is dead, but nothing is
+// hidden. Splitting the two means a real "35 pages of copy return 404" still fails,
+// while leftover documents from a completed migration only warn.
+const orphanTypes = types.filter((t) => !RENDERED_TYPES.includes(t) && !t.startsWith("sanity."));
+const publishedSlugs = new Set(posts.map((p) => p.slug));
+const hidden = [];
+const superseded = [];
+for (const t of orphanTypes) {
+  const docs = await query(`*[_type=="${t}" && !(_id in path("drafts.**"))]{"slug":slug.current}`);
+  for (const d of docs) {
+    const line = `${t}  /${d.slug || "(no slug)"}`;
+    (d.slug && publishedSlugs.has(d.slug) ? superseded : hidden).push(line);
+  }
+}
 note(
-  "document types present in the dataset but never queried by the site",
-  types.filter((t) => !RENDERED_TYPES.includes(t) && !t.startsWith("sanity.")).map((t) => {
-    return `${t}  — nothing in lib/sanity/queries.ts reads this; its documents are invisible`;
-  })
+  "documents of a type the site never queries, with no published page at their slug — this content is unreachable",
+  hidden
+);
+note(
+  "documents of a type the site never queries whose slug is already served by a published post — dead weight from a finished migration, safe to delete",
+  superseded,
+  false
 );
 
 // 3. bodies stored as markdown strings
