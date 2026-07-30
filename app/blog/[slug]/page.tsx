@@ -145,15 +145,22 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="pt-20">
         {/* Hero */}
-        <section className="relative h-[50vh] min-h-[360px]">
-          <Image
-            src={mainImageUrl}
-            alt={post.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
+        <section className="relative h-[50vh] min-h-[360px] bg-navy-800">
+          {/* next/image throws on an empty src, and a post without a mainImage is no
+              longer hypothetical — the neighbourhood guides migrated in from the old
+              blogPost type have none until real local photography exists. The gradient
+              below already covers most of the hero, so its absence reads as a design
+              choice rather than a missing asset. */}
+          {mainImageUrl ? (
+            <Image
+              src={mainImageUrl}
+              alt={post.title}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10" />
           <div className="absolute inset-0 flex items-end">
             <div className="container-xl pb-12">
