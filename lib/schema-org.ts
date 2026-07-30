@@ -139,7 +139,12 @@ export function getBlogPostSchema(post: {
     url: `${SITE_URL}/blog/${post.slug}`,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
-    image: post.mainImageUrl || `${SITE_URL}/images/og-default.jpg`,
+    // The old fallback pointed at /images/og-default.jpg, which does not exist in the
+    // repo and returns 404 on the live site — so a post without a main image handed
+    // Google a broken image URL. Omitting the property is better than asserting one
+    // that 404s; Google drops the article rich result either way, but a missing field
+    // is not a fetch error against the domain.
+    ...(post.mainImageUrl ? { image: post.mainImageUrl } : {}),
     author: {
       '@type': 'Person',
       name: AGENT_NAME,

@@ -58,6 +58,24 @@ function getImageUrl(post: any): string {
   return post.mainImage?.asset?.url || ''
 }
 
+/**
+ * Stands in for a card image when a post has none.
+ *
+ * next/image throws on an empty src, and until now every post happened to have a
+ * mainImage, so passing '' was an untested path. The neighbourhood guides migrated
+ * over from the old blogPost type do not all have one, so this renders a branded
+ * panel rather than crashing the index.
+ */
+function PostImageFallback({ title }: { title: string }) {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950 px-6">
+      <span className="text-center text-xs font-bold uppercase tracking-[0.2em] text-gold-300">
+        {title?.split(':')[0] || 'Candee Currie'}
+      </span>
+    </div>
+  )
+}
+
 function getCategory(post: any): string {
   const existing = post.categories?.[0]
   if (existing && CATEGORY_LABELS[existing]) return existing
@@ -141,13 +159,17 @@ export default async function BlogPage() {
           {/* Featured post */}
           <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-8 card overflow-hidden mb-16">
             <div className="relative aspect-video lg:aspect-auto lg:min-h-[400px] overflow-hidden">
-              <Image
-                src={getImageUrl(featured)}
-                alt={featured.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
+              {getImageUrl(featured) ? (
+                <Image
+                  src={getImageUrl(featured)}
+                  alt={featured.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <PostImageFallback title={featured.title} />
+              )}
               <div className="absolute top-4 left-4">
                 <span className={`${CATEGORY_COLORS[getCategory(featured)] || 'bg-gold'} text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5`}>
                   {CATEGORY_LABELS[getCategory(featured)]}
@@ -177,13 +199,17 @@ export default async function BlogPage() {
             {rest.map((post: any) => (
               <Link key={post._id} href={`/blog/${post.slug}`} className="group card overflow-hidden block">
                 <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={getImageUrl(post)}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+                  {getImageUrl(post) ? (
+                    <Image
+                      src={getImageUrl(post)}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  ) : (
+                    <PostImageFallback title={post.title} />
+                  )}
                   <div className="absolute top-3 left-3">
                     <span className={`${CATEGORY_COLORS[getCategory(post)] || 'bg-gold'} text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1`}>
                       {CATEGORY_LABELS[getCategory(post)]}
