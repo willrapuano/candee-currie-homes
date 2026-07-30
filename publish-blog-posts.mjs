@@ -644,14 +644,11 @@ async function publishPost(filePath, options) {
       doc.mainImage = await uploadImage(imagePath, title);
       console.log(`  🖼️  Image uploaded: ${path.basename(imagePath)}`);
     } catch (err) {
-      console.log(`  ⚠️  Image upload failed: ${err.message} — proceeding without`);
+      throw new Error(`BLOCK_PUBLISH_IMAGE_UPLOAD_FAILED: ${err.message}`);
     }
   } else {
     console.log(`  🚫 No image matched — omitting mainImage`);
-    if (process.env.REQUIRE_BLOG_IMAGE === '1') {
-      throw new Error('BLOCK_PUBLISH_WITHOUT_IMAGE: ' + (meta.slug || filePath));
-    }
-    console.warn('  ⚠️ Publish proceeding without mainImage; UI will look generic until backfilled.');
+    throw new Error('BLOCK_PUBLISH_WITHOUT_IMAGE: ' + (meta.slug || filePath));
   }
 
   if (options.dryRun) {
