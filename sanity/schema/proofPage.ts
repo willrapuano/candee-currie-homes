@@ -25,7 +25,8 @@ export const proofPageSchema = defineType({
       options: {
         list: [
           { title: 'Success Stories', value: 'success-stories' },
-          { title: 'Why Sotheby\'s', value: 'why-sothebys' },
+          // Keep the legacy stored value so existing documents remain valid.
+          { title: 'Brokerage Advantage', value: 'why-sothebys' },
           { title: 'Experience/Authority', value: 'experience' },
           { title: 'Case Study', value: 'case-study' },
           { title: 'Awards/Recognition', value: 'awards' },
@@ -199,7 +200,7 @@ export const proofPageSchema = defineType({
     prepare({ title, pageType }) {
       const typeLabels: Record<string, string> = {
         'success-stories': 'Success Stories',
-        'why-sothebys': 'Why Sotheby\'s',
+        'why-sothebys': 'Brokerage Advantage',
         'experience': 'Experience/Authority',
         'case-study': 'Case Study',
         'awards': 'Awards/Recognition',

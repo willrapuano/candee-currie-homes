@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FaCheckCircle } from 'react-icons/fa'
 
 const CREDENTIALS = [
-  'Associate Broker, TTR Sotheby\'s International Realty',
+  'Associate Broker, Corcoran McEnearney',
   '14+ years serving Northern Virginia',
   'Arlington resident for 30+ years',
   '$105M+ in closed volume (5-year period)',
@@ -24,18 +24,18 @@ export function AboutSection() {
             <div className="relative aspect-[3/4] max-w-sm mx-auto lg:max-w-none overflow-hidden">
               <Image
                 src="/images/candee-currie-headshot.png"
-                alt="Candee Currie — Associate Broker, TTR Sotheby's"
+                alt="Candee Currie — Associate Broker at Corcoran McEnearney"
                 fill
                 sizes="(max-width: 1024px) 80vw, 45vw"
                 className="object-cover object-top"
               />
-              {/* Sotheby's badge */}
+              {/* Brokerage identity */}
               <div className="absolute bottom-6 right-6 bg-navy/90 backdrop-blur-sm border border-gold/30 px-4 py-3">
                 <p className="text-gold text-[9px] font-bold tracking-[0.2em] uppercase">
-                  TTR Sotheby&apos;s
+                  Corcoran
                 </p>
                 <p className="text-white text-[9px] tracking-[0.15em] uppercase">
-                  International Realty
+                  McEnearney
                 </p>
               </div>
             </div>

@@ -42,7 +42,8 @@ export const postSchema = defineType({
           { title: 'Buyer\'s Guide', value: 'buyers-guide' },
           { title: 'Seller\'s Guide', value: 'sellers-guide' },
           { title: 'Home Tips', value: 'home-tips' },
-          { title: 'Sotheby\'s News', value: 'sothebys-news' },
+          // Keep the legacy stored value so existing documents remain valid.
+          { title: 'Brokerage News', value: 'sothebys-news' },
         ],
       },
     }),

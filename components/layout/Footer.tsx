@@ -42,9 +42,10 @@ export function Footer() {
           {/* Brand column */}
           <div>
             <Link href="/" className="flex flex-col leading-none mb-6">
-              <span className="font-serif text-2xl font-bold text-white">Candee Currie</span>
-              <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-gold mt-0.5">
-                TTR Sotheby&apos;s International Realty
+              <span className="font-serif text-2xl font-medium text-white">Candee Currie</span>
+              <span className="mt-1 flex items-center gap-2 text-[10px] font-sans tracking-[0.22em] uppercase text-gold-300">
+                <span className="h-px w-6 bg-gold-400" aria-hidden="true" />
+                Corcoran McEnearney
               </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
@@ -55,10 +56,10 @@ export function Footer() {
               <a href="tel:+17032036005" className="hover:text-gold transition-colors">
                 (703) 203-6005
               </a>
-              <a href="mailto:ccurrie@ttrsir.com" className="hover:text-gold transition-colors">
-                ccurrie@ttrsir.com
+              <a href="mailto:candee.currie@corcoranmce.com" className="break-all hover:text-gold-300 transition-colors">
+                candee.currie@corcoranmce.com
               </a>
-              <span>Arlington, VA 22207</span>
+              <span>3135 Langston Blvd<br />Arlington, VA 22201</span>
             </div>
             <div className="flex items-center gap-4 mt-6">
               {[
@@ -71,7 +72,7 @@ export function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 border border-white/20 flex items-center justify-center text-white/60 hover:border-gold hover:text-gold transition-all duration-200 capitalize text-[10px] font-bold"
+                  className="w-11 h-11 border border-white/20 flex items-center justify-center text-white/60 hover:border-gold-300 hover:text-gold-300 transition-colors duration-200 capitalize text-[10px] font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-300"
                   aria-label={`Candee Currie on ${id}`}
                 >
                   {id[0].toUpperCase()}
@@ -112,7 +113,7 @@ export function Footer() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="text-xs text-white/50 hover:text-gold border border-white/10 hover:border-gold/30 px-3 py-1.5 transition-all duration-200"
+                className="text-xs text-white/50 hover:text-gold-300 border border-white/10 hover:border-gold-300 px-3 py-1.5 transition-colors duration-200"
               >
                 {s.label}
               </Link>
@@ -127,7 +128,8 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-white/40 text-xs">
               © {new Date().getFullYear()} Candee Currie. All rights reserved.
-              Licensed in VA. TTR Sotheby&apos;s International Realty.
+              Licensed in VA. Corcoran McEnearney. Each franchise is independently owned and operated.
+              Corcoran McEnearney fully supports the principles of the Fair Housing Act and Equal Opportunity Act.
             </p>
             <div className="flex items-center gap-4">
               <Link href="/privacy-policy" className="text-white/40 text-xs hover:text-gold transition-colors">Privacy Policy</Link>

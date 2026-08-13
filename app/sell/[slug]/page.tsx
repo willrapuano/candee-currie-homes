@@ -71,15 +71,15 @@ function generateStructuredData(guide: any) {
       jobTitle: 'Associate Broker',
       worksFor: {
         '@type': 'RealEstateAgent',
-        name: "TTR Sotheby's International Realty",
+        name: 'Corcoran McEnearney',
       },
     },
     publisher: {
       '@type': 'RealEstateAgent',
-      name: "TTR Sotheby's International Realty",
+      name: 'Corcoran McEnearney',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://candeecurriehomes.com/images/logo.png',
+        url: 'https://candeecurriehomes.com/icon.svg',
       },
     },
     mainEntityOfPage: {
@@ -248,7 +248,7 @@ export default async function SellerGuidePage({ params }: SellerGuidePageProps) 
                     </div>
                     <p className="text-sm text-charcoal-muted mb-4">
                       218 seller-side transactions. Arlington resident 20+ years. 
-                      TTR Sotheby&apos;s International Realty.
+                      Corcoran McEnearney.
                     </p>
                     <Link href="/contact" className="btn-outline w-full text-center block">
                       Contact Candee

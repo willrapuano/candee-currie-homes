@@ -112,13 +112,15 @@ export function AddressAutocompleteInput({
         className={className}
         autoComplete={autoComplete}
         required={required}
+        role="combobox"
         aria-autocomplete="list"
         aria-expanded={open}
         aria-controls={`${inputId}-suggestions`}
+        aria-busy={loading}
       />
 
       {loading && value.trim().length >= 3 && (
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400">
+        <div role="status" className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400">
           Searching…
         </div>
       )}
@@ -128,11 +130,13 @@ export function AddressAutocompleteInput({
           id={`${inputId}-suggestions`}
           className="absolute z-30 mt-2 w-full overflow-hidden rounded-md border border-gray-200 bg-white shadow-xl"
         >
-          <ul className="max-h-72 overflow-y-auto py-1">
+          <ul role="listbox" className="max-h-72 overflow-y-auto py-1">
             {suggestions.map((suggestion, index) => (
               <li key={`${suggestion.label}-${index}`}>
                 <button
                   type="button"
+                  role="option"
+                  aria-selected="false"
                   onClick={() => handleSelect(suggestion)}
                   className="block w-full px-4 py-3 text-left hover:bg-cream focus:bg-cream focus:outline-none"
                 >

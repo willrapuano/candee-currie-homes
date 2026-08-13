@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${n.name} Homes for Sale | ${n.name} VA Real Estate`,
-    description: `Browse ${n.name} homes for sale in ${n.city}, VA. ${n.shortDescription} Work with Candee Currie — TTR Sotheby's Associate Broker.`,
+    description: `Browse ${n.name} homes for sale in ${n.city}, VA. ${n.shortDescription} Work with Candee Currie — Corcoran McEnearney Associate Broker.`,
     alternates: { canonical: `/neighborhoods/${n.slug}` },
     openGraph: {
       title: `${n.name} Real Estate | Homes for Sale`,

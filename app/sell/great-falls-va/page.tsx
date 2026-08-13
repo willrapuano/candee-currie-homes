@@ -45,7 +45,7 @@ const faqStructuredData = {
       name: 'How long does it take to sell a home in Great Falls, VA?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Estate homes in Great Falls typically take 45–90 days to sell due to their luxury price point and smaller buyer pool. Proper staging, aerial photography, and Sotheby\'s global marketing significantly reduce time on market. A well-positioned Great Falls estate can sell in under 60 days.',
+        text: 'Estate homes in Great Falls typically take 45–90 days to sell due to their luxury price point and smaller buyer pool. Proper staging, aerial photography, and broad brokerage marketing can reduce time on market. A well-positioned Great Falls estate can sell in under 60 days.',
       },
     },
     {
@@ -102,7 +102,7 @@ export default function GreatFallsSellPage() {
               </nav>
               <span className="inline-block px-3 py-1 bg-gold/20 text-gold text-xs font-semibold tracking-wider uppercase rounded mb-4">Great Falls, Virginia</span>
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6">Selling a Home in Great Falls, VA</h1>
-              <p className="text-white/80 text-xl leading-relaxed max-w-2xl mx-auto">Great Falls estate properties demand a luxury marketing strategy. From aerial photography to Sotheby&apos;s global network, here&apos;s how to sell your Great Falls property at its true value.</p>
+              <p className="text-white/80 text-xl leading-relaxed max-w-2xl mx-auto">Great Falls estate properties demand a luxury marketing strategy. From aerial photography to Corcoran brokerage reach, here&apos;s how to sell your Great Falls property at its true value.</p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/home-value" className="btn-gold">Get My Free Home Valuation</Link>
                 <Link href="/contact" className="text-white/70 hover:text-gold transition-colors text-sm self-center underline underline-offset-4">Or schedule a call →</Link>
@@ -118,7 +118,7 @@ export default function GreatFallsSellPage() {
                 <article className="prose prose-lg max-w-none">
                   <h2 className="font-serif text-3xl text-navy font-bold mb-6">The Great Falls Estate Market in 2026</h2>
                   <p className="text-charcoal-muted leading-relaxed">Great Falls, VA is Northern Virginia&apos;s premier luxury enclave — home to sprawling estates on multi-acre lots, many with private access to the Potomac River and Great Falls Park. The area&apos; 22066 zip code consistently ranks among the wealthiest in the United States, known for privacy, exclusivity, and some of the most expensive real estate in the Mid-Atlantic.</p>
-                  <p className="text-charcoal-muted leading-relaxed">Unlike Arlington or McLean, Great Falls has limited inventory — there are no condo buildings, no townhomes. Every property is a single-family estate. This scarcity creates a unique dynamic: when a Great Falls home lists, it attracts attention from luxury buyers across the D.C. metro, Maryland, and even international markets through Sotheby&apos;s network. But selling at top dollar requires specialized marketing that standard agents cannot provide.</p>
+                  <p className="text-charcoal-muted leading-relaxed">Unlike Arlington or McLean, Great Falls has limited inventory — there are no condo buildings, no townhomes. Every property is a single-family estate. This scarcity creates a unique dynamic: when a Great Falls home lists, it attracts attention from luxury buyers across the D.C. metro, Maryland, and international markets. Selling well requires specialized positioning and broad brokerage marketing.</p>
                   <div className="bg-cream p-6 rounded-lg border-l-4 border-gold my-8 not-prose">
                     <h3 className="font-serif text-xl text-navy font-bold mb-2">Key Great Falls Market Stats — 2026</h3>
                     <ul className="space-y-2 text-charcoal-muted">
@@ -136,7 +136,7 @@ export default function GreatFallsSellPage() {
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">1. C-Suite Executives & Entrepreneurs</h3>
                   <p className="text-charcoal-muted leading-relaxed">Great Falls attracts business owners, C-suite executives, and senior government contractors who want privacy and space. These buyers seek: 3+ acre lots, homes with luxury amenities (wine cellars, home theaters, pools, guest houses), proximity to Dulles Airport, and top-tier Fairfax County schools (Langley High, Forestville Elementary). Many are relocating from higher-cost markets and see Great Falls as exceptional value for luxury living.</p>
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">2. Diplomatic & International Families</h3>
-                  <p className="text-charcoal-muted leading-relaxed">Diplomats, ambassadors, and international executives are drawn to Great Falls for its gated communities, riverfront properties, and proximity to Embassy Row. These buyers compare Great Falls to Potomac, MD and seek: security features, guest suites or au pair quarters, and proximity to private international schools. Sotheby&apos;s global marketing is essential to reach this segment.</p>
+                  <p className="text-charcoal-muted leading-relaxed">Diplomats, ambassadors, and international executives are drawn to Great Falls for its gated communities, riverfront properties, and proximity to Embassy Row. These buyers compare Great Falls to Potomac, MD and seek security features, guest suites or au pair quarters, and proximity to private international schools. Corcoran brokerage and relocation channels help reach this segment.</p>
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">3. Privacy-Focused Professionals</h3>
                   <p className="text-charcoal-muted leading-relaxed">Senior intelligence community members, federal judges, and medical professionals choose Great Falls specifically for its tree-lined lots, winding roads, and seclusion. These buyers value: wooded privacy, mature landscaping, well and septic systems (for properties outside municipal services), and proximity to Great Falls Park for outdoor recreation. Many want equestrian facilities or horse properties.</p>
 
@@ -148,7 +148,7 @@ export default function GreatFallsSellPage() {
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">3. Not Preparing for Well & Septic Inspections</h3>
                   <p className="text-charcoal-muted leading-relaxed">Many Great Falls properties are on private wells and septic systems — unlike municipal areas with inspections. Buyers will test well quality, septic capacity, and drain field condition. Sellers who don&apos;t proactively address these systems risk deal-killing surprises during inspection. Candee recommends pre-listing well and septic evaluations for all properties outside Fairfax Water and Sewer service.</p>
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">4. Ignoring International & Diplomatic Buyers</h3>
-                  <p className="text-charcoal-muted leading-relaxed">A significant portion of Great Falls&apos; luxury buyer pool is international. If your listing is only on the MLS, you&apos;re invisible to diplomats relocating from abroad, international executives transferring to the D.C. area, and foreign investors seeking Virginia luxury real estate. Sotheby&apos;s International Realty&apos;s network across 70+ countries is essential for reaching these buyers.</p>
+                  <p className="text-charcoal-muted leading-relaxed">A significant portion of Great Falls&apos; luxury buyer pool is international. If your listing is only on the MLS, it can miss diplomats relocating from abroad, international executives transferring to the D.C. area, and foreign investors seeking Virginia luxury real estate. Brokerage, referral, and relocation channels are important for reaching these buyers.</p>
 
                   <h2 className="font-serif text-3xl text-navy font-bold mb-6 mt-12">The Process — Selling Your Great Falls Estate with Candee</h2>
                   <div className="space-y-6 not-prose">
@@ -156,7 +156,7 @@ export default function GreatFallsSellPage() {
                       { step: 1, title: 'Free Luxury Estate Valuation', desc: 'Get a valuation specific to Great Falls estate market dynamics — lot size, waterfront access, condition, and recent luxury comps in the 22066 zip code.' },
                       { step: 2, title: 'Estate Consultation', desc: 'Candee walks through your property, identifies premium features (pools, guest houses, equestrian facilities), and develops a marketing strategy worthy of a Great Falls estate.' },
                       { step: 3, title: 'Luxury Media Production', desc: 'Drone photography, aerial video, twilight shots, 3D walkthrough tours, and professional staging consultation — because Great Falls marketing must match Great Falls quality.' },
-                      { step: 4, title: 'Global Luxury Marketing', desc: 'Sotheby\'s International Realty network reaches 70+ countries. Your listing appears in Sotheby\'s luxury catalogs, international property portals, and targeted campaigns to diplomatic buyers.' },
+                      { step: 4, title: 'Global Luxury Marketing', desc: 'Corcoran brokerage, referral, and relocation channels support international property exposure and targeted campaigns to diplomatic and executive buyers.' },
                       { step: 5, title: 'Showings & Negotiation', desc: 'Private showings for qualified luxury buyers, coordination with diplomatic security protocols, and expert negotiation for complex estate transactions.' },
                       { step: 6, title: 'Closing & Beyond', desc: 'Full coordination through inspection, well/septic evaluation, appraisal, and settlement. Great Falls luxury closings often require specialized title and tax expertise.' },
                     ].map((item) => (
@@ -171,12 +171,12 @@ export default function GreatFallsSellPage() {
                   </div>
 
                   <h2 className="font-serif text-3xl text-navy font-bold mb-6 mt-16">Why Work With Candee to Sell Your Great Falls Estate</h2>
-                  <p className="text-charcoal-muted leading-relaxed">Great Falls requires more than a standard agent — it requires someone who understands luxury estate marketing, who can leverage Sotheby&apos;s global network, and who has the experience to price and position high-value properties. Candee combines Northern Virginia expertise with international luxury marketing reach.</p>
+                  <p className="text-charcoal-muted leading-relaxed">Great Falls requires more than a standard agent — it requires someone who understands luxury estate marketing, can activate brokerage and relocation networks, and has the experience to price and position high-value properties. Candee combines Northern Virginia expertise with international luxury marketing reach.</p>
                   <div className="space-y-6 not-prose my-8">
                     {[
                       { icon: '🏠', title: 'Luxury Estate Expertise', desc: 'Candee understands Great Falls uniquely — the well and septic considerations, the importance of acreage, the appeal to diplomatic buyers, and the specific marketing channels that reach luxury buyers.' },
                       { icon: '📊', title: 'Data-Driven Luxury Pricing', desc: 'Great Falls comps require specialized analysis — every property is different, lot sizes vary from 1 to 25+ acres, and waterfront access significantly changes valuation. Candee provides accurate, property-specific CMAs.' },
-                      { icon: '🌐', title: 'Sotheby\'s Global Network', desc: 'Your Great Falls listing reaches buyers across 70+ countries through TTR Sotheby\'s International Realty — essential for reaching international executives, diplomats, and investors seeking Virginia luxury real estate.' },
+                      { icon: '🌐', title: 'Corcoran Network Reach', desc: 'Corcoran McEnearney brokerage, referral, and relocation channels help reach international executives, diplomats, and investors seeking Virginia luxury real estate.' },
                       { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers, including luxury estates and high-value transactions. She\'s handled every scenario Great Falls sellers face.' },
                     ].map((item) => (
                       <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
@@ -194,7 +194,7 @@ export default function GreatFallsSellPage() {
                   <h2 className="font-serif text-3xl text-navy font-bold mb-8">Frequently Asked Questions — Selling in Great Falls</h2>
                   <div className="space-y-4">
                     {[
-                      { q: 'How long does it take to sell a home in Great Falls, VA?', a: 'Estate homes in Great Falls typically take 45–90 days to sell due to their luxury price point and smaller buyer pool. Proper staging, aerial photography, and Sotheby\'s global marketing significantly reduce time on market.' },
+                      { q: 'How long does it take to sell a home in Great Falls, VA?', a: 'Estate homes in Great Falls typically take 45–90 days to sell due to their luxury price point and smaller buyer pool. Proper staging, aerial photography, and broad brokerage marketing can reduce time on market.' },
                       { q: 'What is my Great Falls home worth?', a: 'Great Falls estate values range from $1.5M for smaller homes on 1–2 acre lots to $5M+ for waterfront properties. Lot size is the primary value driver. Candee provides free, estate-specific valuations based on comparable luxury sales. Start with our free home valuation.' },
                       { q: 'Do I need to stage an estate home in Great Falls?', a: 'Professional staging is essentially essential for luxury properties in Great Falls. Homes priced above $2M sell faster when fully staged. For occupied homes, selective staging of key rooms (great room, kitchen, primary suite) is recommended.' },
                       { q: 'What is the best time of year to sell in Great Falls?', a: 'Spring (April–June) is peak season for Great Falls estate sales. Fall (September–October) is secondary. Winter sales are rare but often involve highly motivated buyers making competitive offers due to limited inventory.' },
@@ -210,7 +210,7 @@ export default function GreatFallsSellPage() {
 
                 <div className="mt-12 p-8 bg-cream border-l-4 border-gold rounded-lg not-prose">
                   <h3 className="font-serif text-2xl text-navy font-bold mb-4">Ready to Sell Your Great Falls Estate?</h3>
-                  <p className="text-charcoal-muted mb-6">Get a free, no-obligation luxury estate valuation from Candee Currie — Associate Broker with Sotheby&apos;s global network and 20+ years of Northern Virginia expertise.</p>
+                  <p className="text-charcoal-muted mb-6">Get a free, no-obligation luxury estate valuation from Candee Currie — Corcoran McEnearney Associate Broker with 20+ years of Northern Virginia expertise.</p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link href="/home-value" className="btn-gold text-center block">Get My Free Home Valuation</Link>
                     <Link href="/contact" className="btn-outline text-center block">Schedule a Consultation</Link>
@@ -225,7 +225,7 @@ export default function GreatFallsSellPage() {
                       <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center"><span className="text-gold font-serif text-2xl font-bold">CC</span></div>
                       <div><p className="font-serif text-lg text-navy font-semibold">Candee Currie</p><p className="text-sm text-charcoal-muted">Associate Broker</p></div>
                     </div>
-                    <p className="text-sm text-charcoal-muted mb-4">TTR Sotheby&apos;s International Realty. Luxury estate specialist with global Sotheby&apos;s network access and 218 seller-side transactions.</p>
+                    <p className="text-sm text-charcoal-muted mb-4">Corcoran McEnearney. Luxury estate specialist with broad brokerage reach and 218 seller-side transactions.</p>
                     <Link href="/contact" className="btn-outline w-full text-center block">Contact Candee</Link>
                   </div>
                   <div className="bg-navy p-6 text-center"><p className="text-white/80 text-sm mb-4">What is your Great Falls estate worth?</p><Link href="/home-value" className="btn-gold w-full block">Get a Free Valuation</Link></div>

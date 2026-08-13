@@ -27,7 +27,13 @@ const priorityStyles: Record<string, string> = {
 }
 
 export default async function SellerHubPage() {
-  const guides = await sanityClient.fetch(ALL_SELLER_GUIDES_QUERY)
+  let guides: any[] = []
+
+  try {
+    guides = await sanityClient.fetch(ALL_SELLER_GUIDES_QUERY)
+  } catch (error) {
+    console.error('[sell] Seller guides are temporarily unavailable', error)
+  }
 
   // Group guides by category
   const guidesByCategory = guides.reduce((acc: any, guide: any) => {

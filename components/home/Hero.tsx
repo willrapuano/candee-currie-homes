@@ -5,11 +5,11 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=1920&q=85"
-          alt="Northern Virginia luxury homes — Arlington, McLean, Falls Church, Alexandria"
+          src="/images/neighborhoods/mclean.jpg"
+          alt="Luxury residential architecture in McLean, Virginia"
           fill
           priority
           sizes="100vw"
@@ -24,20 +24,20 @@ export function Hero() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-tight md:leading-tight text-balance mb-4 md:mb-6">
           Your Northern Virginia
           <br className="hidden sm:block" />
-          {' '}<span className="text-gold">Real Estate Expert</span>
+          {' '}<span className="text-gold-200">Real Estate Expert</span>
         </h1>
 
         {/* Subheadline */}
         <p className="text-white/80 text-sm sm:text-base md:text-xl max-w-2xl leading-relaxed mb-6 md:mb-8 px-2">
-          Candee Currie — Associate Broker at TTR Sotheby&apos;s. 14 years. 241 transactions. $105M+ volume.
+          Candee Currie — Associate Broker at Corcoran McEnearney. 14 years. 241 transactions. $105M+ volume.
           <span className="hidden md:inline"> </span>
           <br className="md:hidden" />
           Arlington, McLean, Falls Church, Alexandria.
         </p>
 
         {/* Social proof micro-line */}
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mb-10 text-white/60 text-[11px] sm:text-sm">
-          <span>⭐ 5.0 across 40+ reviews</span>
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mb-10 text-white/80 text-[11px] sm:text-sm">
+          <span>★ 5-star client reviews</span>
           <span className="hidden sm:block h-3 w-px bg-white/20" />
           <span>241 closed transactions</span>
           <span className="hidden sm:block h-3 w-px bg-white/20" />
@@ -55,12 +55,12 @@ export function Hero() {
         </div>
 
         {/* Secondary nav */}
-        <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 mt-10 md:mt-12 text-[10px] sm:text-xs text-white/50 tracking-wider uppercase">
-          <Link href="/neighborhoods" className="hover:text-gold transition-colors">Browse Neighborhoods</Link>
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 mt-10 md:mt-12 text-[10px] sm:text-xs text-white/80 tracking-wider uppercase">
+          <Link href="/neighborhoods" className="hover:text-gold-200 transition-colors">Browse Neighborhoods</Link>
           <span className="hidden sm:block h-3 w-px bg-white/20 self-center" />
-          <Link href="/market" className="hover:text-gold transition-colors">NoVA Market Report</Link>
+          <Link href="/market" className="hover:text-gold-200 transition-colors">NoVA Market Report</Link>
           <span className="hidden sm:block h-3 w-px bg-white/20 self-center" />
-          <Link href="/contact" className="hover:text-gold transition-colors">Work With Candee</Link>
+          <Link href="/contact" className="hover:text-gold-200 transition-colors">Work With Candee</Link>
         </div>
       </div>
     </section>

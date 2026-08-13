@@ -6,10 +6,10 @@
 
 @layer base {
   :root {
-    --color-navy: #1a2744;
-    --color-gold: #c5a47e;
-    --color-cream: #f8f8f8;
-    --color-charcoal: #1a1a1a;
+    --color-navy: #181716;
+    --color-gold: #b3263e;
+    --color-cream: #f7f6f4;
+    --color-charcoal: #181716;
   }
 
   html {
@@ -30,11 +30,11 @@
   /* ── Buttons ── */
   .btn-gold {
     @apply inline-flex items-center justify-center gap-2 
-           bg-gold text-navy font-semibold px-8 py-3.5
-           rounded-none border-2 border-gold
-           transition-all duration-300 ease-out
-           hover:bg-transparent hover:text-gold hover:shadow-gold
-           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+           bg-gold-600 text-white font-semibold px-8 py-3.5 min-h-11
+           rounded-none border-2 border-gold-600
+           transition-colors duration-200 ease-out
+           hover:bg-gold-700 hover:border-gold-700 hover:shadow-gold
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 0.8125rem;
@@ -44,9 +44,9 @@
     @apply inline-flex items-center justify-center gap-2
            bg-navy text-white font-semibold px-8 py-3.5
            rounded-none border-2 border-navy
-           transition-all duration-300 ease-out
+           transition-colors duration-200 ease-out
            hover:bg-transparent hover:text-navy
-           focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2;
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 0.8125rem;
@@ -56,9 +56,9 @@
     @apply inline-flex items-center justify-center gap-2
            bg-transparent text-white font-semibold px-8 py-3.5
            rounded-none border-2 border-white
-           transition-all duration-300 ease-out
+           transition-colors duration-200 ease-out
            hover:bg-white hover:text-navy
-           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-navy;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 0.8125rem;
@@ -68,9 +68,9 @@
     @apply inline-flex items-center justify-center gap-2
            bg-transparent text-white font-semibold px-8 py-3.5
            rounded-none border-2 border-white
-           transition-all duration-300 ease-out
+           transition-colors duration-200 ease-out
            hover:bg-white hover:text-navy
-           focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-navy;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-size: 0.8125rem;
@@ -108,7 +108,7 @@
 
   /* ── Cards ── */
   .card {
-    @apply bg-white shadow-card hover:shadow-card-hover transition-shadow duration-300;
+    @apply bg-white shadow-card hover:shadow-card-hover transition-shadow duration-200;
   }
 
   .listing-card {
@@ -139,7 +139,7 @@
     @apply w-full px-4 py-3 border border-gray-200 
            focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent
            placeholder:text-gray-400 text-charcoal bg-white
-           transition-all duration-200;
+           transition-colors duration-200;
   }
 
   .form-label {
@@ -153,6 +153,22 @@
 
   .stat-label {
     @apply font-sans text-sm text-charcoal-muted tracking-wide mt-1;
+  }
+}
+
+/* The default rose is dark enough for text on white. Use its lighter tint whenever
+   legacy text-gold utilities appear inside a dark brand surface. */
+.bg-navy .text-gold,
+[class*="bg-navy/"] .text-gold {
+  color: #eca3b0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -172,7 +188,7 @@
 
 /* Carousel dots */
 .carousel-dot {
-  @apply w-2 h-2 rounded-full bg-gray-300 transition-all duration-300;
+  @apply w-2 h-2 rounded-full bg-gray-300 transition-[width,background-color] duration-200;
 }
 .carousel-dot.active {
   @apply w-6 bg-gold;

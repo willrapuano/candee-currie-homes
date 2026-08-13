@@ -226,7 +226,7 @@ export default function FallsChurchSellPage() {
                       { step: 1, title: 'Free Home Valuation', desc: 'Get a personalized, data-driven valuation of your Falls Church home — no obligation, no pressure.' },
                       { step: 2, title: 'Pre-Listing Consultation', desc: 'Walk through your home together. Identify improvements, staging opportunities, and set a pricing strategy based on recent comps and market conditions.' },
                       { step: 3, title: 'Prep & Staging', desc: 'Professional staging and photography. Every listing features professional-grade media — drone shots, video walkthrough, and twilight photos.' },
-                      { step: 4, title: 'Strategic Marketing', desc: 'Beyond MLS — targeted digital campaigns, social media, email to Candee&apos;s network, and Sotheby&apos;s global reach for luxury listings.' },
+                      { step: 4, title: 'Strategic Marketing', desc: 'Beyond MLS — targeted digital campaigns, social media, email to Candee&apos;s network, and Corcoran brokerage channels for luxury listings.' },
                       { step: 5, title: 'Showings & Negotiation', desc: 'Coordinated showings, offer management, and skilled negotiation to maximize your sale price and terms.' },
                       { step: 6, title: 'Closing & Beyond', desc: 'Handled inspections, appraisal coordination, closing logistics, and post-sale relocation support if needed.' },
                     ].map((item) => (
@@ -257,7 +257,7 @@ export default function FallsChurchSellPage() {
                     {[
                       { icon: '🏠', title: '20+ Years in Northern Virginia', desc: 'Candee has lived, worked, and sold across Arlington, Falls Church, McLean, and Great Falls. She knows which neighborhoods are trending, which school districts drive premiums, and what buyers in each area are willing to pay.' },
                       { icon: '📊', title: 'Data-Driven Pricing, Not Guesswork', desc: 'Every listing starts with a comparative market analysis — not a Zestimate. Candee pulls real-time comps, accounts for your specific upgrades, and sets a pricing strategy calibrated to current Falls Church demand.' },
-                      { icon: '🌐', title: 'Sotheby\'s Global Reach', desc: 'As a TTR Sotheby\'s International Realty associate broker, your listing gets exposure across 70+ countries. Falls Church luxury buyers don\'t just come from Virginia — they come from New York, California, and overseas.' },
+                      { icon: '🌐', title: 'Corcoran Network Reach', desc: 'As a Corcoran McEnearney associate broker, Candee can position luxury listings for relocation, referral, and international buyers beyond Northern Virginia.' },
                       { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers. She\'s negotiated against every type of buyer agent, handled every inspection scenario, and knows how to structure offers that protect your bottom line.' },
                     ].map((item) => (
                       <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
@@ -344,7 +344,7 @@ export default function FallsChurchSellPage() {
                       </div>
                     </div>
                     <p className="text-sm text-charcoal-muted mb-4">
-                      TTR Sotheby&apos;s International Realty. 20+ years in Northern Virginia real estate. 
+                      Corcoran McEnearney. 20+ years in Northern Virginia real estate.
                       Falls Church market expert.
                     </p>
                     <Link href="/contact" className="btn-outline w-full text-center block">

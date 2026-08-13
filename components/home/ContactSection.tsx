@@ -65,8 +65,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-navy font-semibold text-sm">Email</p>
-                  <a href="mailto:ccurrie@ttrsir.com" className="text-charcoal-muted hover:text-gold transition-colors">
-                    ccurrie@ttrsir.com
+                  <a href="mailto:candee.currie@corcoranmce.com" className="break-all text-charcoal-muted hover:text-gold transition-colors">
+                    candee.currie@corcoranmce.com
                   </a>
                 </div>
               </div>
@@ -78,9 +78,9 @@ export function ContactSection() {
                 <div>
                   <p className="text-navy font-semibold text-sm">Office</p>
                   <p className="text-charcoal-muted">
-                    TTR Sotheby&apos;s International Realty<br />
-                    1206 N Washington St<br />
-                    Alexandria, VA 22314
+                    Corcoran McEnearney<br />
+                    3135 Langston Blvd<br />
+                    Arlington, VA 22201
                   </p>
                 </div>
               </div>
@@ -89,14 +89,14 @@ export function ContactSection() {
             {/* Google Maps embed */}
             <div className="mt-10 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200">
               <iframe
-                src="https://maps.google.com/maps?q=1206+N+Washington+St%2C+Alexandria%2C+VA+22314&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=3135+Langston+Blvd%2C+Arlington%2C+VA+22201&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="TTR Sotheby's International Realty — 1206 N Washington St, Alexandria VA"
+                title="Corcoran McEnearney — 3135 Langston Blvd, Arlington VA"
               />
             </div>
           </div>

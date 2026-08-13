@@ -6,7 +6,7 @@ import { getBreadcrumbSchema, getFAQSchema } from '@/lib/schema-org'
 export const metadata: Metadata = {
   title: 'What\'s My Home Worth? | Free CMA | Candee Currie Arlington VA',
   description:
-    'Get a free Comparative Market Analysis from Candee Currie — TTR Sotheby\'s Associate Broker in Arlington, VA. Real comps, real local expertise. No obligation.',
+    'Get a free Comparative Market Analysis from Candee Currie — Corcoran McEnearney Associate Broker in Arlington, VA. Real comps, real local expertise. No obligation.',
   alternates: { canonical: '/home-value' },
   openGraph: {
     title: 'Free Home Valuation | Arlington VA CMA | Candee Currie',

@@ -24,7 +24,7 @@ export default function TermsPage() {
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Acceptance of Terms</h2>
           <p className="text-charcoal-muted leading-relaxed mb-4">
             By using candeecurriehomes.com, you agree to these terms of use. This site is operated by 
-            Candee Currie, Associate Broker at TTR Sotheby&apos;s International Realty.
+            Candee Currie, Associate Broker at Corcoran McEnearney.
           </p>
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Property Information Disclaimer</h2>
           <p className="text-charcoal-muted leading-relaxed mb-4">
@@ -46,8 +46,8 @@ export default function TermsPage() {
           <h2 className="font-serif text-2xl text-navy font-bold mt-8 mb-3">Contact</h2>
           <p className="text-charcoal-muted leading-relaxed">
             Questions? Contact{' '}
-            <a href="mailto:ccurrie@ttrsir.com" className="text-gold hover:underline">
-              ccurrie@ttrsir.com
+            <a href="mailto:candee.currie@corcoranmce.com" className="text-gold hover:underline">
+              candee.currie@corcoranmce.com
             </a>.
           </p>
         </div>

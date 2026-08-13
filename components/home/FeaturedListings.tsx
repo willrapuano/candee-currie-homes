@@ -19,7 +19,7 @@ export function FeaturedListings() {
             </p>
           </div>
           <Link
-            href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer"
+            href="https://corcoranmce.com/agent/candee-currie" target="_blank" rel="noopener noreferrer"
             className="btn-navy self-start md:self-auto whitespace-nowrap"
           >
             View All Listings
@@ -35,7 +35,7 @@ export function FeaturedListings() {
 
         {/* CTA */}
         <div className="flex justify-center mt-12">
-          <Link href="https://www.ttrsir.com/agents/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">
+          <Link href="https://corcoranmce.com/agent/candee-currie" target="_blank" rel="noopener noreferrer" className="btn-gold">
             Explore All Available Homes
           </Link>
         </div>
