@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { getBreadcrumbSchema } from '@/lib/schema-org'
 
 export const metadata: Metadata = {
-  title: 'Homes for Sale in Northern Virginia | Candee Currie | TTR Sotheby\'s',
+  title: 'Homes for Sale in Northern Virginia | Candee Currie | Corcoran McEnearney',
   description:
-    'Search homes for sale in Arlington, McLean, Falls Church, Alexandria and surrounding Northern Virginia communities with Candee Currie — TTR Sotheby\'s Associate Broker.',
+    'Search homes for sale in Arlington, McLean, Falls Church, Alexandria and surrounding Northern Virginia communities with Candee Currie — Corcoran McEnearney Associate Broker.',
   alternates: { canonical: '/homes-for-sale' },
 }
 
@@ -37,7 +37,7 @@ export default function HomesForSalePage() {
               then connect with Candee for tailored guidance and private showing strategy.
             </p>
             <a
-              href="https://www.ttrsir.com/agents/candee-currie"
+              href="https://corcoranmce.com/agent/candee-currie"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold text-base px-10 py-4 inline-block"
@@ -45,7 +45,7 @@ export default function HomesForSalePage() {
               Search All Listings →
             </a>
             <p className="text-white/40 text-xs mt-4">
-              Opens on TTR Sotheby&apos;s — full MLS access, Candee&apos;s listings first.
+              Opens on Candee&apos;s Corcoran McEnearney profile for current listings and brokerage search.
             </p>
           </div>
         </section>
@@ -55,7 +55,7 @@ export default function HomesForSalePage() {
           <div className="container-lg">
             <div className="text-center mb-12">
               <p className="section-label">The Candee Advantage</p>
-              <h2 className="section-title">Why Search With a Sotheby&apos;s Agent?</h2>
+              <h2 className="section-title">Why Search With Candee?</h2>
               <div className="gold-divider-center" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -69,8 +69,8 @@ export default function HomesForSalePage() {
                   body: 'Automated search filters miss what matters — lot orientation, noise exposure, HOA politics. Candee knows.',
                 },
                 {
-                  title: "Sotheby's Global Network",
-                  body: "Preferred access to luxury inventory and relocation buyers, locally and internationally.",
+                  title: 'Corcoran Network',
+                  body: 'Brokerage connections and relocation reach help surface relevant opportunities locally and beyond Northern Virginia.',
                 },
               ].map(({ title, body }) => (
                 <div key={title} className="bg-white p-8 shadow-card">

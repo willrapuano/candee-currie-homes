@@ -8,7 +8,7 @@ import { ALL_POSTS_QUERY } from '@/lib/sanity/queries'
 export const metadata: Metadata = {
   title: 'Northern Virginia Real Estate Blog | Market Updates & Neighborhood Guides',
   description:
-    'Expert insights on the Arlington VA real estate market, neighborhood spotlights, buyer and seller guides from Candee Currie — TTR Sotheby\'s.',
+    'Expert insights on the Arlington VA real estate market, neighborhood spotlights, buyer and seller guides from Candee Currie — Corcoran McEnearney.',
   alternates: { canonical: '/blog' },
 }
 

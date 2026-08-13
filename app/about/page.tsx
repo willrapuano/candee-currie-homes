@@ -6,9 +6,9 @@ import { Testimonials } from '@/components/home/Testimonials'
 import { getBreadcrumbSchema } from '@/lib/schema-org'
 
 export const metadata: Metadata = {
-  title: 'About Candee Currie | Arlington VA Realtor | TTR Sotheby\'s International Realty',
+  title: 'About Candee Currie | Arlington VA Realtor | Corcoran McEnearney',
   description:
-    "Meet Candee Currie — Associate Broker at TTR Sotheby's International Realty. 14+ years serving Arlington, McLean, Falls Church & Alexandria VA. 241 transactions, $105M+ volume.",
+    'Meet Candee Currie — Associate Broker at Corcoran McEnearney. 14+ years serving Arlington, McLean, Falls Church & Alexandria VA. 241 transactions, $105M+ volume.',
   alternates: { canonical: '/about' },
 }
 
@@ -16,16 +16,16 @@ const CREDENTIALS = [
   { icon: FaAward, label: 'Associate Broker', sub: 'Virginia Real Estate' },
   { icon: FaHome, label: '241 Transactions', sub: '14-Year Career' },
   { icon: FaStar, label: '5.0 Google Rating', sub: '100% Recommend' },
-  { icon: FaAward, label: 'TTR Sotheby\'s', sub: 'International Realty' },
+  { icon: FaAward, label: 'Corcoran', sub: 'McEnearney' },
 ]
 
 const TIMELINE = [
   { year: '2011', event: 'Licensed as a Virginia REALTOR® — immediately focused on Arlington and Northern Virginia' },
   { year: '2014', event: 'Earned Associate Broker designation after consistent top-producer performance' },
-  { year: '2017', event: 'Joined TTR Sotheby\'s International Realty — aligning with the premier luxury brand in NoVA' },
+  { year: '2017', event: 'Expanded her luxury practice and referral network across Northern Virginia' },
   { year: '2020', event: 'Navigated clients through the unprecedented pandemic market — 100% success rate on listings' },
   { year: '2023', event: 'Crossed $100M in career closed volume — reflecting consistency over 12+ years' },
-  { year: '2026', event: 'Continuing to serve buyers and sellers throughout Arlington, McLean, Falls Church & Alexandria' },
+  { year: 'Now', event: 'Associate Broker at Corcoran McEnearney, serving buyers and sellers throughout Northern Virginia' },
 ]
 
 export default function AboutPage() {
@@ -43,7 +43,7 @@ export default function AboutPage() {
         <section className="bg-navy py-24">
           <div className="container-xl">
             <div className="max-w-2xl">
-              <p className="section-label">Associate Broker · TTR Sotheby&apos;s International Realty</p>
+              <p className="section-label">Associate Broker · Corcoran McEnearney</p>
               <h1 className="font-serif text-5xl md:text-6xl text-white font-bold leading-tight mb-4">
                 About <span className="text-gold">Candee Currie</span>
               </h1>
@@ -71,10 +71,10 @@ export default function AboutPage() {
                     className="object-cover object-top"
                   />
                 </div>
-                {/* Sotheby's badge */}
+                {/* Brokerage identity */}
                 <div className="absolute bottom-4 right-4 bg-navy border border-gold/30 px-4 py-3">
-                  <p className="text-gold text-[9px] font-bold tracking-[0.2em] uppercase">TTR Sotheby&apos;s International</p>
-                  <p className="text-white text-[9px] tracking-[0.15em] uppercase">Realty</p>
+                  <p className="text-gold text-[9px] font-bold tracking-[0.2em] uppercase">Corcoran</p>
+                  <p className="text-white text-[9px] tracking-[0.15em] uppercase">McEnearney</p>
                 </div>
               </div>
 

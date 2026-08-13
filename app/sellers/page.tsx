@@ -8,7 +8,7 @@ import { Testimonials } from '@/components/home/Testimonials'
 export const metadata: Metadata = {
   title: 'Sell Your Northern Virginia Home | Listing Specialist | Candee Currie',
   description:
-    "Ready to sell? Candee Currie — TTR Sotheby's Associate Broker — gets homes sold fast and for top dollar in Arlington, McLean, Falls Church & Alexandria. 218 seller-side transactions.",
+    'Ready to sell? Candee Currie — Corcoran McEnearney Associate Broker — guides sellers throughout Arlington, McLean, Falls Church & Alexandria. 218 seller-side transactions.',
   alternates: { canonical: '/sellers' },
 }
 
@@ -23,13 +23,13 @@ const PROCESS_STEPS = [
     icon: FaCameraRetro,
     step: '02',
     title: 'Staging & Photography',
-    description: 'Professional staging consultation and high-end photography (including video and drone) from Sotheby\'s preferred vendors. First impressions win.',
+    description: 'Professional staging consultation and high-end photography, including video and drone when appropriate, from trusted local partners. First impressions win.',
   },
   {
     icon: FaBullhorn,
     step: '03',
     title: 'Maximum Exposure',
-    description: 'MLS, Zillow, Realtor.com, Sotheby\'s global network, targeted social campaigns, and Candee\'s personal buyer network. Your listing reaches everyone.',
+    description: 'MLS, major property portals, Corcoran brokerage channels, targeted social campaigns, and Candee\'s personal buyer network. Your listing reaches qualified buyers wherever they start.',
   },
   {
     icon: FaHandshake,
@@ -133,28 +133,28 @@ export default function SellersPage() {
         </div>
       </section>
 
-      {/* Why Sotheby's matters */}
+      {/* Brokerage advantage */}
       <section className="section-padding bg-navy">
         <div className="container-xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="section-label">The Sotheby&apos;s Advantage</p>
+              <p className="section-label">The Corcoran McEnearney Advantage</p>
               <h2 className="font-serif text-4xl text-white font-bold mb-4">
                 Global Reach. Local Expertise.
               </h2>
               <div className="w-16 h-0.5 bg-gold mb-6" />
               <p className="text-white/70 leading-relaxed mb-6">
-                When you list with Candee, your home is marketed through the Sotheby&apos;s 
-                International Realty network — one of the most powerful luxury real estate 
-                brands in the world, with 25,000+ agents in 80+ countries.
+                When you list with Candee, local market strategy is supported by Corcoran
+                McEnearney&apos;s brokerage network, relocation reach, and polished property marketing.
+                The result is broad exposure without losing the hands-on guidance of a local associate broker.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Exclusive marketing on SothebysRealty.com and global partner sites',
-                  'Print advertising in The Wall Street Journal, Financial Times, and luxury publications',
+                  'Visibility through Corcoran brokerage and partner marketing channels',
+                  'Print and digital campaigns selected for the property and likely buyer',
                   'White-glove photography, videography, and 3D tours',
-                  'Access to international buyer networks for luxury properties',
-                  'Unmatched brand credibility in the $1M+ market',
+                  'Relocation and referral reach for luxury properties',
+                  'Established local credibility in Northern Virginia',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <FaCheckCircle className="text-gold text-sm mt-0.5 flex-shrink-0" />

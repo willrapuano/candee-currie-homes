@@ -5,7 +5,7 @@ import { getBreadcrumbSchema } from '@/lib/schema-org'
 export const metadata: Metadata = {
   title: 'Contact Candee Currie | Arlington VA Real Estate',
   description:
-    'Reach out to Candee Currie — TTR Sotheby\'s Associate Broker. Serving Arlington, McLean, Falls Church & Alexandria VA. Call, email, or use the contact form.',
+    'Reach out to Candee Currie — Corcoran McEnearney Associate Broker. Serving Arlington, McLean, Falls Church & Alexandria VA. Call, email, or use the contact form.',
   alternates: { canonical: '/contact' },
 }
 

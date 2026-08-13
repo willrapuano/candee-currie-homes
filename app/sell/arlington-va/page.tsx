@@ -255,7 +255,7 @@ export default function ArlingtonSellPage() {
                       { step: 1, title: 'Free Neighborhood-Specific Home Valuation', desc: 'Get a valuation calibrated to your Arlington sub-market — not a county average. North Arlington and South Arlington require different analysis.' },
                       { step: 2, title: 'Pre-Listing Consultation', desc: 'Walk through your Arlington property. Identify improvements, staging opportunities, and set a pricing strategy based on neighborhood comps, not ZIP-code generalizations.' },
                       { step: 3, title: 'Prep & Staging', desc: 'Professional staging and photography tailored to your target buyer — tech professionals want modern, government families want school-adjacent positioning.' },
-                      { step: 4, title: 'Strategic Marketing', desc: 'Beyond MLS — targeted campaigns to Amazon HQ2 relocators, government transfer professionals, Sotheby\'s global luxury network, and Arlington-specific digital outreach.' },
+                      { step: 4, title: 'Strategic Marketing', desc: 'Beyond MLS — targeted campaigns to Amazon HQ2 relocators, government transfer professionals, Corcoran brokerage channels, and Arlington-specific digital outreach.' },
                       { step: 5, title: 'Showings & Negotiation', desc: 'Coordinated showings, skilled offer management, and negotiation expertise for Arlington&apos;s competitive market dynamics.' },
                       { step: 6, title: 'Closing & Beyond', desc: 'Full coordination through inspection, appraisal, and settlement. Arlington&apos;s fast-moving closings require an agent who anticipates every step.' },
                     ].map((item) => (
@@ -287,7 +287,7 @@ export default function ArlingtonSellPage() {
                     {[
                       { icon: '🏠', title: 'Arlington Resident for 20+ Years', desc: 'Candee doesn\'t just sell Arlington — she lives here. She knows which neighborhoods are seeing new construction, which are appreciating fastest, and what specific buyers in each area are willing to pay.' },
                       { icon: '📊', title: 'Micro-Market Pricing Expertise', desc: 'Arlington\'s North/South divide means county-level data is misleading. Candee provides valuations at the neighborhood level — Cherrydale, Clarendon, Arlington Ridge — with real-time comps.' },
-                      { icon: '🌐', title: 'Sotheby\'s Global Reach', desc: 'For Arlington luxury homes, your listing gets exposure across 70+ countries through TTR Sotheby\'s International Realty — reaching international buyers for premium North Arlington properties.' },
+                      { icon: '🌐', title: 'Corcoran Network Reach', desc: 'For Arlington luxury homes, Corcoran McEnearney brokerage and referral channels extend your listing beyond the local MLS to relocation and international buyers.' },
                       { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers. She\'s negotiated against every buyer type in Arlington: cash offers, FHA loans, VA buyers, investors, and new construction reps.' },
                     ].map((item) => (
                       <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
@@ -374,7 +374,7 @@ export default function ArlingtonSellPage() {
                       </div>
                     </div>
                     <p className="text-sm text-charcoal-muted mb-4">
-                      TTR Sotheby&apos;s International Realty. Arlington resident 20+ years. 
+                      Corcoran McEnearney. Arlington resident 20+ years.
                       218 seller-side transactions across Arlington&apos;s 50+ neighborhoods.
                     </p>
                     <Link href="/contact" className="btn-outline w-full text-center block">

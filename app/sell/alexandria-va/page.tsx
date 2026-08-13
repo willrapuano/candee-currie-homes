@@ -160,7 +160,7 @@ export default function AlexandriaSellPage() {
                       { step: 1, title: 'Free Neighborhood-Specific Valuation', desc: 'Get a valuation specific to your Alexandria neighborhood — Old Town, Del Ray, Rosemont, Landmark, or wherever your home is. Alexandria pricing requires micro-market analysis, not citywide averages.' },
                       { step: 2, title: 'Pre-Listing Consultation', desc: 'Candee walks through your property, identifies the unique character features that make your Alexandria home special, and sets a pricing strategy based on neighborhood comps.' },
                       { step: 3, title: 'Character-Forward Staging & Photography', desc: 'Alexandria homes sell on charm. Professional photography that captures original architectural details, cozy nooks, and neighborhood context is essential — not generic listing photos.' },
-                      { step: 4, title: 'Targeted Marketing', desc: 'Reach D.C. commuters, government relocations, and families seeking community. Sotheby\'s network brings additional buyers from beyond Northern Virginia. Digital campaigns highlight walkability, transit access, and neighborhood character.' },
+                      { step: 4, title: 'Targeted Marketing', desc: 'Reach D.C. commuters, government relocations, and families seeking community. Corcoran brokerage channels bring additional buyers from beyond Northern Virginia. Digital campaigns highlight walkability, transit access, and neighborhood character.' },
                       { step: 5, title: 'Showings & Negotiation', desc: 'Coordinated showings for a diverse buyer pool — from first-time buyers to luxury purchasers. Expert negotiation to navigate Alexandria\'s competitive market dynamics.' },
                       { step: 6, title: 'Closing & Beyond', desc: 'Full coordination through inspection, appraisal, and settlement. Alexandria closings range from 30–45 days depending on loan type and property complexity.' },
                     ].map((item) => (
@@ -177,7 +177,7 @@ export default function AlexandriaSellPage() {
                     {[
                       { icon: '🏠', title: 'Northern Virginia & Alexandria Expertise', desc: 'Candee covers all of Northern Virginia — she knows how Alexandria compares to Arlington, McLean, and Falls Church in a buyer&apos;s eyes, and how to position your home to win in a competitive market.' },
                       { icon: '📊', title: 'Neighborhood-Level Pricing', desc: 'Every Alexandria neighborhood has its own pricing dynamics. Candee provides valuations based on your specific block, not the city average. Old Town, Del Ray, and Landmark don&apos;t price the same way.' },
-                      { icon: '🌐', title: 'Sotheby\'s Global Reach', desc: 'Old Town Alexandria luxury buyers come from around the world. Sotheby\'s International Realty network puts your listing in front of international buyers, diplomats, and corporate relocations.' },
+                      { icon: '🌐', title: 'Corcoran Network Reach', desc: 'Old Town Alexandria luxury buyers come from around the world. Corcoran McEnearney brokerage and referral channels help reach international buyers, diplomats, and corporate relocations.' },
                       { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers. She\'s handled every Alexandria scenario: historic home sales, condo closings, and luxury transactions across Northern Virginia.' },
                     ].map((item) => (
                       <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
@@ -210,7 +210,7 @@ export default function AlexandriaSellPage() {
                 {/* ===== CTA ===== */}
                 <div className="mt-12 p-8 bg-cream border-l-4 border-gold rounded-lg not-prose">
                   <h3 className="font-serif text-2xl text-navy font-bold mb-4">Ready to Sell Your Alexandria Home?</h3>
-                  <p className="text-charcoal-muted mb-6">Get a free, no-obligation home valuation from Candee Currie — Associate Broker with 20+ years of Northern Virginia expertise and Sotheby&apos;s global network. Know what your home is worth before you list.</p>
+                  <p className="text-charcoal-muted mb-6">Get a free, no-obligation home valuation from Candee Currie — Corcoran McEnearney Associate Broker with 20+ years of Northern Virginia expertise. Know what your home is worth before you list.</p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link href="/home-value" className="btn-gold text-center block">Get My Free Home Valuation</Link>
                     <Link href="/contact" className="btn-outline text-center block">Schedule a Consultation</Link>
@@ -226,7 +226,7 @@ export default function AlexandriaSellPage() {
                       <div className="w-16 h-16 bg-navy rounded-full flex items-center justify-center"><span className="text-gold font-serif text-2xl font-bold">CC</span></div>
                       <div><p className="font-serif text-lg text-navy font-semibold">Candee Currie</p><p className="text-sm text-charcoal-muted">Associate Broker</p></div>
                     </div>
-                    <p className="text-sm text-charcoal-muted mb-4">TTR Sotheby&apos;s International Realty. 20+ years in Northern Virginia. Alexandria market expert with Sotheby&apos;s global network.</p>
+                    <p className="text-sm text-charcoal-muted mb-4">Corcoran McEnearney. 20+ years in Northern Virginia. Alexandria market expertise with broad brokerage and referral reach.</p>
                     <Link href="/contact" className="btn-outline w-full text-center block">Contact Candee</Link>
                   </div>
                   <div className="bg-navy p-6 text-center">

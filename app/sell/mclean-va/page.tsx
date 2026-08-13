@@ -229,8 +229,8 @@ export default function McLeanSellPage() {
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">3. Ignoring International & Diplomatic Marketing</h3>
                   <p className="text-charcoal-muted leading-relaxed">
                     McLean attracts international buyers. Marketing only on the MLS misses this segment. 
-                    Sotheby&apos;s International Realty network reaches 70+ countries — if your agent isn&apos;t 
-                    leveraging global marketing channels, your McLean home is invisible to a significant buyer pool.
+                    Corcoran brokerage and referral channels reach beyond Northern Virginia — if your agent isn&apos;t
+                    leveraging relocation and international marketing, your McLean home can miss a significant buyer pool.
                   </p>
 
                   <h3 className="font-serif text-xl text-navy font-semibold mb-3">4. Underestimating Lot Value</h3>
@@ -250,7 +250,7 @@ export default function McLeanSellPage() {
                       { step: 1, title: 'Free Luxury Home Valuation', desc: 'Get a valuation specific to your McLean neighborhood — not a Fairfax County average. McLean pricing requires understanding luxury comps, lot values, and school district premiums.' },
                       { step: 2, title: 'Pre-Listing Consultation', desc: 'Walk through your McLean property. Identify premium features, staging opportunities, and set a pricing strategy that competes with both resales and new luxury construction.' },
                       { step: 3, title: 'Luxury Staging & Photography', desc: 'Professional staging is standard in McLean. Drone footage, twilight photography, and video walkthroughs are essential for marketing luxury properties to remote and international buyers.' },
-                      { step: 4, title: 'Global Marketing Reach', desc: 'Sotheby\'s International Realty network extends to 70+ countries. Your McLean listing reaches buyers from Beijing, London, Dubai, and São Paulo — not just D.C. locals.' },
+                      { step: 4, title: 'Global Marketing Reach', desc: 'Corcoran brokerage, referral, and relocation channels extend beyond the D.C. region so your McLean listing can reach qualified national and international buyers.' },
                       { step: 5, title: 'Showings & Negotiation', desc: 'Coordinated showings for a diverse buyer pool — corporate relocators, diplomats, and local upgraders. Expert negotiation to navigate multiple offers and unique buyer circumstances.' },
                       { step: 6, title: 'Closing & Beyond', desc: 'Full coordination through inspection, appraisal, and settlement. Luxury transactions in McLean often require specialized title work and tax considerations.' },
                     ].map((item) => (
@@ -274,15 +274,15 @@ export default function McLeanSellPage() {
                   <p className="text-charcoal-muted leading-relaxed">
                     Selling a McLean home — especially a luxury property — requires more than a standard 
                     listing strategy. You need an agent who understands the nuances of the 22101 and 22102 
-                    markets, who has access to Sotheby&apos;s global buyer network, and who has a track record 
+                    markets, who can activate brokerage and relocation buyer networks, and who has a track record
                     of closing high-value transactions.
                   </p>
 
                   <div className="space-y-6 not-prose my-8">
                     {[
-                      { icon: '🏠', title: 'McLean & Sotheby\'s Expertise', desc: 'Candee combines local Northern Virginia knowledge with Sotheby\'s International Realty\'s global luxury network. Your McLean listing reaches the world — not just the MLS.' },
+                      { icon: '🏠', title: 'McLean & Corcoran Expertise', desc: 'Candee combines local Northern Virginia knowledge with Corcoran McEnearney\'s brokerage reach. Your McLean listing is marketed beyond the MLS.' },
                       { icon: '📊', title: 'Luxury Pricing Precision', desc: 'McLean requires understanding lot value, school premiums, and luxury comps. Candee provides valuations that account for all three — not a generic county average.' },
-                      { icon: '🌐', title: 'Sotheby\'s Global Reach', desc: 'As a TTR Sotheby\'s International Realty associate broker, your listing gets exposure across 70+ countries — reaching international buyers and diplomats who pay premium for McLean properties.' },
+                      { icon: '🌐', title: 'Corcoran Network Reach', desc: 'As a Corcoran McEnearney associate broker, Candee can position your listing for international buyers, diplomats, and corporate relocations seeking McLean properties.' },
                       { icon: '🤝', title: '218 Seller-Side Transactions', desc: 'Candee has closed 218 deals representing sellers. She\'s handled luxury transactions, corporate relocations, and diplomatic sales — every scenario a McLean seller may face.' },
                     ].map((item) => (
                       <div key={item.title} className="flex gap-4 items-start bg-cream/50 p-4 rounded-lg">
@@ -341,7 +341,7 @@ export default function McLeanSellPage() {
                   </h3>
                   <p className="text-charcoal-muted mb-6">
                     Get a free, no-obligation home valuation from Candee Currie — Associate Broker with 20+ years 
-                    of Northern Virginia market expertise and Sotheby&apos;s global reach. Know what your home is worth before you list.
+                    of Northern Virginia market expertise and Corcoran brokerage reach. Know what your home is worth before you list.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link href="/home-value" className="btn-gold text-center block">
@@ -369,8 +369,8 @@ export default function McLeanSellPage() {
                       </div>
                     </div>
                     <p className="text-sm text-charcoal-muted mb-4">
-                      TTR Sotheby&apos;s International Realty. 20+ years in Northern Virginia. 
-                      Luxury and estate specialist with global Sotheby&apos;s network access.
+                      Corcoran McEnearney. 20+ years in Northern Virginia.
+                      Luxury and estate specialist with broad brokerage and referral reach.
                     </p>
                     <Link href="/contact" className="btn-outline w-full text-center block">
                       Contact Candee

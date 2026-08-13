@@ -233,7 +233,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <div className="bg-cream p-6 mb-6">
                   <h3 className="font-serif text-navy text-lg font-bold mb-4">About Candee</h3>
                   <p className="text-charcoal-muted text-sm leading-relaxed mb-4">
-                    Candee Currie is an Associate Broker at TTR Sotheby&apos;s International Realty{' '}
+                    Candee Currie is an Associate Broker at Corcoran McEnearney{' '}
                     specializing in Arlington and Northern Virginia real estate.
                   </p>
                   <Link href="/about" className="btn-navy w-full text-center block text-sm">

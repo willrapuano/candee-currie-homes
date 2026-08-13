@@ -1,7 +1,7 @@
 // Schema.org structured data generators
 
 const AGENT_NAME = 'Candee Currie'
-const BROKERAGE = "TTR Sotheby's International Realty"
+const BROKERAGE = 'Corcoran McEnearney'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://candeecurriehomes.com'
 
 export function getRealEstateAgentSchema() {
@@ -10,24 +10,24 @@ export function getRealEstateAgentSchema() {
     '@type': ['RealEstateAgent', 'LocalBusiness'],
     name: AGENT_NAME,
     description:
-      "Candee Currie is a top-producing Associate Broker at TTR Sotheby's International Realty specializing in Arlington, McLean, Falls Church, and Alexandria VA real estate.",
+      'Candee Currie is a top-producing Associate Broker at Corcoran McEnearney specializing in Arlington, McLean, Falls Church, and Alexandria VA real estate.',
     url: SITE_URL,
-    logo: `${SITE_URL}/images/logo.png`,
+    logo: `${SITE_URL}/icon.svg`,
     image: `${SITE_URL}/images/candee-currie-headshot.png`,
     telephone: '+17032036005',
-    email: 'ccurrie@ttrsir.com',
+    email: 'candee.currie@corcoranmce.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '1206 N Washington St',
-      addressLocality: 'Alexandria',
+      streetAddress: '3135 Langston Blvd',
+      addressLocality: 'Arlington',
       addressRegion: 'VA',
-      postalCode: '22314',
+      postalCode: '22201',
       addressCountry: 'US',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 38.8816,
-      longitude: -77.0910,
+      latitude: 38.8951,
+      longitude: -77.0977,
     },
     areaServed: [
       {
@@ -54,7 +54,7 @@ export function getRealEstateAgentSchema() {
     memberOf: {
       '@type': 'Organization',
       name: BROKERAGE,
-      url: 'https://www.ttrsir.com',
+      url: 'https://corcoranmce.com',
     },
     hasCredential: {
       '@type': 'EducationalOccupationalCredential',
@@ -155,7 +155,7 @@ export function getBlogPostSchema(post: {
       name: `${AGENT_NAME} | ${BROKERAGE}`,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/images/logo.png`,
+        url: `${SITE_URL}/icon.svg`,
       },
     },
   }

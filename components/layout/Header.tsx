@@ -17,7 +17,6 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
-  const isHome = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -28,24 +27,21 @@ export function Header() {
   // Close mobile menu on route change
   useEffect(() => { setMobileOpen(false) }, [pathname])
 
-  const headerBg = isHome && !scrolled
-    ? 'bg-transparent'
-    : 'bg-white shadow-md'
-
-  const textColor = isHome && !scrolled ? 'text-white' : 'text-navy'
-  const logoSubColor = isHome && !scrolled ? 'text-gold' : 'text-gold'
+  const headerBg = scrolled
+    ? 'bg-white/95 shadow-sm backdrop-blur-md'
+    : 'bg-white/95 backdrop-blur-md'
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-200 ${headerBg}`}
     >
       {/* Top bar */}
-      <div className={`border-b transition-colors duration-300 ${isHome && !scrolled ? 'border-white/10' : 'border-gray-100'}`}>
+      <div className="border-b border-gray-100">
         <div className="container-xl">
           <div className="flex items-center justify-end py-1.5 gap-6">
             <a
               href="tel:+17032036005"
-              className={`text-xs font-medium transition-colors hover:text-gold ${isHome && !scrolled ? 'text-white/80' : 'text-charcoal-muted'}`}
+              className="text-xs font-medium text-charcoal-muted transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
             >
               (703) 203-6005
             </a>
@@ -57,12 +53,13 @@ export function Header() {
       <div className="container-xl">
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none group">
-            <span className={`font-serif text-xl font-bold tracking-tight transition-colors group-hover:text-gold ${textColor}`}>
+          <Link href="/" className="group flex flex-col leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-4">
+            <span className="font-serif text-[1.4rem] font-medium tracking-tight text-navy transition-colors group-hover:text-gold">
               Candee Currie
             </span>
-            <span className={`text-[10px] font-sans tracking-[0.25em] uppercase transition-colors ${logoSubColor}`}>
-              TTR Sotheby&apos;s International Realty
+            <span className="mt-1 flex items-center gap-2 text-[9px] font-sans tracking-[0.22em] uppercase text-navy/70">
+              <span className="h-px w-6 bg-gold" aria-hidden="true" />
+              Corcoran McEnearney
             </span>
           </Link>
 
@@ -73,7 +70,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={`font-sans text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-gold
-                  ${pathname.startsWith(link.href) ? 'text-gold' : textColor}`}
+                  ${pathname.startsWith(link.href) ? 'text-gold' : 'text-navy'}`}
               >
                 {link.label}
               </Link>
@@ -88,25 +85,23 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className={`lg:hidden p-2 ${textColor}`}
+            className="lg:hidden min-h-11 min-w-11 p-2 text-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 bg-current transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <span className={`block h-0.5 bg-current transition-transform duration-200 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`block h-0.5 bg-current transition-opacity duration-200 ${mobileOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 bg-current transition-transform duration-200 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
         </nav>
       </div>
 
       {/* Mobile menu */}
-      <div
-        className={`lg:hidden bg-navy transition-all duration-300 overflow-hidden ${
-          mobileOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
+      {mobileOpen && <div id="mobile-navigation" className="lg:hidden bg-navy">
         <div className="container-xl py-6 flex flex-col gap-4">
           {NAV_LINKS.map((link) => (
             <Link
@@ -123,7 +118,7 @@ export function Header() {
             </Link>
           </div>
         </div>
-      </div>
+      </div>}
     </header>
   )
 }

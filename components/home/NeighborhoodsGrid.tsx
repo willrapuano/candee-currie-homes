@@ -2,12 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { NEIGHBORHOODS } from '@/data/neighborhoods'
 
-function formatPrice(price: number) {
-  if (price >= 1000000) return `$${(price / 1000000).toFixed(1)}M`
-  if (price >= 1000) return `$${(price / 1000).toFixed(0)}K`
-  return `$${price}`
-}
-
 export function NeighborhoodsGrid() {
   return (
     <section className="section-padding bg-cream">
@@ -29,9 +23,9 @@ export function NeighborhoodsGrid() {
           ))}
         </div>
 
-        {/* Grid — remaining */}
+        {/* Supporting communities — keep the homepage scan concise on mobile. */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {NEIGHBORHOODS.slice(4, 20).map((n) => (
+          {NEIGHBORHOODS.slice(4, 9).map((n) => (
             <NeighborhoodCard key={n.slug} neighborhood={n} size="small" />
           ))}
         </div>
@@ -82,18 +76,9 @@ function NeighborhoodCard({
               {neighborhood.tagline}
             </p>
           )}
-          {neighborhood.stats?.medianPrice && (
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-gold text-xs font-semibold">
-                From {formatPrice(neighborhood.stats.medianPrice)}
-              </span>
-              {neighborhood.stats.activeListings && (
-                <span className="text-white/50 text-[10px]">
-                  {neighborhood.stats.activeListings} active
-                </span>
-              )}
-            </div>
-          )}
+          <span className="mt-3 inline-flex items-center text-gold-200 text-xs font-semibold">
+            Explore the neighborhood →
+          </span>
         </div>
 
         {/* Hover state */}
