@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { format } from 'date-fns'
 import { sanityClientNoCache } from '@/lib/sanity/client'
 import { ALL_POSTS_QUERY } from '@/lib/sanity/queries'
+import { formatPublishedDate } from '@/lib/dates'
 
 export const metadata: Metadata = {
   title: 'Northern Virginia Real Estate Blog | Market Updates & Neighborhood Guides',
@@ -33,25 +33,11 @@ const CATEGORY_COLORS: Record<string, string> = {
 }
 
 function safeFormat(dateStr: string | undefined): string {
-  if (!dateStr) return ''
-  try {
-    const d = new Date(dateStr)
-    if (isNaN(d.getTime())) return ''
-    return format(d, 'MMMM d, yyyy')
-  } catch {
-    return ''
-  }
+  return formatPublishedDate(dateStr, 'MMMM d, yyyy')
 }
 
 function safeFormatShort(dateStr: string | undefined): string {
-  if (!dateStr) return ''
-  try {
-    const d = new Date(dateStr)
-    if (isNaN(d.getTime())) return ''
-    return format(d, 'MMM d, yyyy')
-  } catch {
-    return ''
-  }
+  return formatPublishedDate(dateStr, 'MMM d, yyyy')
 }
 
 function getImageUrl(post: any): string {
