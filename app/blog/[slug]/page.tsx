@@ -2,18 +2,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { format, isValid } from 'date-fns'
+import { formatPublishedDate } from '@/lib/dates'
 
 /** Safe date formatter — returns empty string for invalid dates like "TBDT..." */
 function safeFormat(dateStr: string | undefined): string {
-  if (!dateStr) return ''
-  try {
-    const d = new Date(dateStr)
-    if (!isValid(d)) return ''
-    return format(d, 'MMMM d, yyyy')
-  } catch {
-    return ''
-  }
+  return formatPublishedDate(dateStr, 'MMMM d, yyyy')
 }
 import { sanityClientNoCache } from '@/lib/sanity/client'
 import { POST_QUERY, POST_SLUGS_QUERY, ALL_POSTS_QUERY, FEATURED_POSTS_QUERY } from '@/lib/sanity/queries'
@@ -92,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description,
-      alternates: { canonical: `/blog/${post.slug.current}` },
+      alternates: { canonical: `/blog/${post.slug}` },
       openGraph: {
         title,
         description,
@@ -126,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
   // Build schema
   const schemaOrg = getBlogPostSchema({
     title: post.title,
-    slug: post.slug.current,
+    slug: post.slug,
     excerpt: post.excerpt || '',
     publishedAt: post.publishedAt,
     mainImageUrl,
@@ -135,7 +128,7 @@ export default async function BlogPostPage({ params }: Props) {
   const breadcrumb = getBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Blog', url: '/blog' },
-    { name: post.title, url: `/blog/${post.slug.current}` },
+    { name: post.title, url: `/blog/${post.slug}` },
   ])
 
   return (
