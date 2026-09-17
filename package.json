@@ -9,7 +9,8 @@
     "lint": "next lint",
     "sanity": "sanity dev",
     "sanity:deploy": "sanity deploy",
-    "sanity:build": "sanity build"
+    "sanity:build": "sanity build",
+    "check:secrets": "node scripts/check-no-secrets.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

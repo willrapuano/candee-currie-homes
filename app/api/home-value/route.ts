@@ -23,10 +23,12 @@ export async function POST(request: NextRequest) {
 
     const ghlApiKey = process.env.GHL_API_KEY
     const ghlWebhookUrl = process.env.GHL_HOME_VALUE_WEBHOOK_URL || process.env.GHL_WEBHOOK_URL
-    const locationId =
-      process.env.GHL_LOCATION_ID ||
-      process.env.NEXT_PUBLIC_GHL_LOCATION_ID ||
-      'N2t4FzVeZVhK36srDMZC'
+    const locationId = process.env.GHL_LOCATION_ID
+
+    if (!ghlWebhookUrl && !locationId) {
+      console.error('[home-value] GHL_LOCATION_ID not configured (and no GHL webhook URL set)')
+      return NextResponse.json({ error: 'GHL_LOCATION_ID not configured' }, { status: 503 })
+    }
 
     const fullAddress = [address, city, zip ? `VA ${zip}` : 'VA'].filter(Boolean).join(', ')
 

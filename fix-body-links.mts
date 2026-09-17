@@ -1,9 +1,12 @@
 import { createClient } from '@sanity/client'
 
+const token = process.env.SANITY_API_TOKEN
+if (!token) throw new Error('SANITY_API_TOKEN is not set')
+
 const client = createClient({
   projectId: 'ej27mt39',
   dataset: 'production',
-  token: 'sktduwqwKdJnL5n5pE2nyPs9DqBocM7DfANFPaymKdyaOFuN1Lo9YGmRKnRJHiz7lZKcSDL2XQcMAs3Wgau8i7fmbOsHlfRGHReSsFnarWk9bV5m7uCMctippLqfjQA2W4WeWw0lar7qA8TWn87Jw6nG3lsYoTeoMVJ6vZedNRXsT0LqfHD2',
+  token,
   useCdn: false,
   apiVersion: '2024-01-01',
 })

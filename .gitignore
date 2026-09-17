@@ -7,3 +7,6 @@ node_modules/
 dist/
 .turbo/
 .vercel/output/
+# Local env files (never commit real values; see .env.example)
+.env.local
+.env*.local
